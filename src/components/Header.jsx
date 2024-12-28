@@ -138,7 +138,7 @@ function Header() {
                     <a href="#">Livro</a>
                   </Dialog.Trigger>
 
-                  <BaseModal title="Cadastro de Livro" />
+                  <BaseModal title="Cadastro de Livro" type="book" />
                 </Dialog.Root>
               </li>
               <li>
@@ -147,7 +147,7 @@ function Header() {
                     <a href="#">Autor</a>
                   </Dialog.Trigger>
 
-                  <BaseModal title="Cadastro de Autor" />
+                  <BaseModal title="Cadastro de Autor" type="author" />
                 </Dialog.Root>
               </li>
             </SecondLevel>
