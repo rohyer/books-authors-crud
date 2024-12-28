@@ -124,7 +124,7 @@ function Header() {
             <Link to="autores">Autores</Link>
           </li>
           <li>
-            <a href="#">Cadastrar</a>
+            <Link to="#">Cadastrar</Link>
 
             <SecondLevel>
               <li>
