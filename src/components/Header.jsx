@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const StyledHeader = styled.header`
   display: flex;
@@ -117,20 +118,20 @@ function Header() {
       <Nav>
         <ul>
           <li>
-            <a href="">Livros</a>
+            <Link to="livros">Livros</Link>
           </li>
           <li>
-            <a href="">Autores</a>
+            <Link to="autores">Autores</Link>
           </li>
           <li>
-            <a href="">Cadastrar</a>
+            <a href="#">Cadastrar</a>
 
             <SecondLevel>
               <li>
-                <a href="">Livro</a>
+                <a href="#">Livro</a>
               </li>
               <li>
-                <a href="">Autor</a>
+                <a href="#">Autor</a>
               </li>
             </SecondLevel>
           </li>
