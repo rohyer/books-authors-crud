@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const StyledHeader = styled.header`
   display: flex;
@@ -56,7 +57,7 @@ const Nav = styled.nav`
         transition: all 0.2s;
       }
 
-      &:nth-child(3) {
+      &:nth-child(4) {
         &:hover {
           &:after {
             width: 140px;
@@ -117,20 +118,23 @@ function Header() {
       <Nav>
         <ul>
           <li>
-            <a href="">Livros</a>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <a href="">Autores</a>
+            <Link to="livros">Livros</Link>
           </li>
           <li>
-            <a href="">Cadastrar</a>
+            <Link to="autores">Autores</Link>
+          </li>
+          <li>
+            <Link to="#">Cadastrar</Link>
 
             <SecondLevel>
               <li>
-                <a href="">Livro</a>
+                <a href="#">Livro</a>
               </li>
               <li>
-                <a href="">Autor</a>
+                <a href="#">Autor</a>
               </li>
             </SecondLevel>
           </li>
