@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import * as Dialog from "@radix-ui/react-dialog";
+import AuthorForm from "./AuthorForm";
+import BookForm from "./BookForm";
 
 const Overlay = styled(Dialog.Overlay)`
   background-color: rgba(0, 0, 0, 0.5);
@@ -12,7 +14,7 @@ const Content = styled(Dialog.Content)`
   border-radius: 6px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
   max-width: 400px;
-  max-height: 500px;
+  max-height: 400px;
   padding: 15px;
   position: fixed;
   top: 0;
@@ -28,19 +30,16 @@ const Title = styled(Dialog.Title)`
   font-weight: 600;
   font-style: normal;
   color: #444;
+  margin-bottom: 10px;
 `;
 
-const RegisterButton = styled.button`
-  font-family: "Montserrat", sans-serif;
-  font-size: 12px;
-  font-weight: 600;
+const Description = styled(Dialog.Description)`
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
   font-style: normal;
-  color: #fff;
-  background-color: #0073d0cc;
-  transition: all 0.3s;
-  &:hover {
-    background-color: #0073d0ff;
-  }
+  color: #333;
+  margin-bottom: 15px;
 `;
 
 const CloseButton = styled(Dialog.Close)`
@@ -58,21 +57,29 @@ const CloseButton = styled(Dialog.Close)`
   }
 `;
 
-const AuthorModal = ({ title }) => {
+const AuthorModal = ({ title, type }) => {
   return (
     <Dialog.Portal>
       <Overlay />
 
       <Content>
-        <Title style={{ fontSize: "20px", marginBottom: "10px" }}>
-          {title}
-        </Title>
-        <Dialog.Description style={{ fontSize: "16px", marginBottom: "20px" }}>
-          Descrição
-        </Dialog.Description>
-        <RegisterButton style={{ padding: "10px 20px", fontSize: "16px" }}>
-          Cadastrar
-        </RegisterButton>
+        <Title>{title}</Title>
+        {type === "book" && (
+          <>
+            <Description>
+              Cadastre livros através do formulário abaixo
+            </Description>
+            <BookForm />
+          </>
+        )}
+        {type === "author" && (
+          <>
+            <Description>
+              Cadastre autores através do formulário abaixo
+            </Description>
+            <AuthorForm />
+          </>
+        )}
         <CloseButton aria-label="Close">×</CloseButton>
       </Content>
     </Dialog.Portal>
