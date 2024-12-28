@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import * as Dialog from "@radix-ui/react-dialog";
+import BaseModal from "./BaseModal";
 
 const StyledHeader = styled.header`
   display: flex;
@@ -131,10 +133,22 @@ function Header() {
 
             <SecondLevel>
               <li>
-                <a href="#">Livro</a>
+                <Dialog.Root>
+                  <Dialog.Trigger asChild>
+                    <a href="#">Livro</a>
+                  </Dialog.Trigger>
+
+                  <BaseModal title="Cadastro de Livro" />
+                </Dialog.Root>
               </li>
               <li>
-                <a href="#">Autor</a>
+                <Dialog.Root>
+                  <Dialog.Trigger asChild>
+                    <a href="#">Autor</a>
+                  </Dialog.Trigger>
+
+                  <BaseModal title="Cadastro de Autor" />
+                </Dialog.Root>
               </li>
             </SecondLevel>
           </li>
