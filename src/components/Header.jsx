@@ -57,7 +57,7 @@ const Nav = styled.nav`
         transition: all 0.2s;
       }
 
-      &:nth-child(3) {
+      &:nth-child(4) {
         &:hover {
           &:after {
             width: 140px;
@@ -117,6 +117,9 @@ function Header() {
     <StyledHeader>
       <Nav>
         <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
           <li>
             <Link to="livros">Livros</Link>
           </li>
