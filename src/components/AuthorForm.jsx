@@ -76,13 +76,13 @@ const AuthorForm = ({ onAddData }) => {
     reset,
     formState: { errors }
   } = useForm();
+
   const [submitSuccess, setSubmitSuccess] = useState("");
   const [submitError, setSubmitError] = useState("");
 
   const onSubmit = async (data) => {
-    console.log("Teste");
-    setSubmitSuccess();
-    setSubmitError();
+    setSubmitSuccess("");
+    setSubmitError("");
 
     try {
       const newAuthor = await addAuthor(data);
@@ -102,11 +102,9 @@ const AuthorForm = ({ onAddData }) => {
         placeholder="Nome"
       />
       {errors.name && <InputError>{errors.name.message}</InputError>}
-      <Input
-        {...register("email", { required: "Campo obrigatório" })}
-        placeholder="E-mail"
-      />
-      {errors.email && <InputError>{errors.email.message}</InputError>}
+
+      <Input {...register("email")} placeholder="E-mail" />
+
       <SubmitButton
         type="submit"
         style={{ padding: "10px 20px", fontSize: "16px" }}
