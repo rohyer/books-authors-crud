@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import Plus from "../assets/plus.svg";
 import * as Dialog from "@radix-ui/react-dialog";
 import BaseModal from "../components/BaseModal";
-import Table from "../components/Table";
+import TableAuthors from "../components/TableAuthors";
 import Title from "../components/Title";
 import { getAllAuthors, deleteAuthor } from "../services/indexedDB";
 
@@ -37,13 +36,6 @@ const RegisterButton = styled.button`
       color: #fff;
     }
   }
-`;
-
-const PlusIcon = styled.img`
-  width: 20px;
-  height: auto;
-  color: #333333;
-  transition: all 0.25s;
 `;
 
 const Authors = () => {
@@ -83,10 +75,7 @@ const Authors = () => {
     <StyledAuthor>
       <Dialog.Root>
         <Dialog.Trigger asChild style={{ textAlign: "center" }}>
-          <RegisterButton>
-            <PlusIcon src={Plus} />
-            Cadastrar Autor
-          </RegisterButton>
+          <RegisterButton>Cadastrar Autor</RegisterButton>
         </Dialog.Trigger>
 
         <BaseModal
@@ -99,7 +88,7 @@ const Authors = () => {
       {!Array.isArray(authors) || authors.length === 0 ? (
         <Title title="Nenhum autor cadastrado!" />
       ) : (
-        <Table type="autor" data={authors} onDelete={handleDelete} />
+        <TableAuthors type="autor" data={authors} onDelete={handleDelete} />
       )}
     </StyledAuthor>
   );
