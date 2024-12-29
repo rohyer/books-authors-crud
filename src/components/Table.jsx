@@ -1,8 +1,11 @@
 import styled from "styled-components";
+import { FaTrashAlt } from "react-icons/fa";
+import * as Dialog from "@radix-ui/react-dialog";
+import DeleteModal from "./DeleteModal";
+import Title from "./Title";
 
 const StyledTable = styled.table`
   width: 100%;
-  max-width: 1280px;
   margin: 20px auto 0px;
 `;
 
@@ -23,7 +26,12 @@ const TableRow = styled.tr`
   }
 `;
 
-const Table = ({ data }) => {
+const TrashIcon = styled(FaTrashAlt)`
+  cursor: pointer;
+  color: #ff0000;
+`;
+
+const Table = ({ type, data, onDelete }) => {
   return (
     <StyledTable>
       <thead>
@@ -31,18 +39,37 @@ const Table = ({ data }) => {
           <TableHeader>ID</TableHeader>
           <TableHeader>Name</TableHeader>
           <TableHeader>E-mail</TableHeader>
-          {data[0].authorId && <TableHeader>Autor</TableHeader>}
+          {data && data[0] && data[0].authorId && (
+            <TableHeader>Autor</TableHeader>
+          )}
+          <TableHeader></TableHeader>
         </tr>
       </thead>
       <tbody>
-        {data.map((item) => (
-          <TableRow key={item.id}>
-            <TableCell>{item.id}</TableCell>
-            <TableCell>{item.name}</TableCell>
-            <TableCell>{item.email}</TableCell>
-            {item.authorId && <TableCell>{item.authorId}</TableCell>}
-          </TableRow>
-        ))}
+        {data &&
+          data.map((item) => (
+            <TableRow key={item.id}>
+              <TableCell>{item.id}</TableCell>
+              <TableCell>{item.name}</TableCell>
+              <TableCell>{item.email}</TableCell>
+              {item.authorId && <TableCell>{item.authorId}</TableCell>}
+
+              <TableCell style={{ textAlign: "center" }}>
+                <Dialog.Root>
+                  <Dialog.Trigger asChild style={{ textAlign: "center" }}>
+                    <TrashIcon />
+                  </Dialog.Trigger>
+
+                  <DeleteModal
+                    type={type}
+                    id={item.id}
+                    name={item.name}
+                    onDelete={onDelete}
+                  />
+                </Dialog.Root>
+              </TableCell>
+            </TableRow>
+          ))}
       </tbody>
     </StyledTable>
   );
