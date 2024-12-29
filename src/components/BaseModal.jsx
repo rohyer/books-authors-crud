@@ -56,7 +56,7 @@ const CloseButton = styled(Dialog.Close)`
   }
 `;
 
-const BaseModal = ({ title, type, onAddData }) => {
+const BaseModal = ({ title, type, onAddData, authorsData }) => {
   return (
     <Dialog.Portal>
       <Overlay />
@@ -72,7 +72,7 @@ const BaseModal = ({ title, type, onAddData }) => {
             <Description>
               Cadastre livros através do formulário abaixo
             </Description>
-            <BookForm onAddData={onAddData} />
+            <BookForm onAddData={onAddData} authorsData={authorsData} />
           </>
         )}
         {type === "author" && (
