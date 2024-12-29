@@ -34,9 +34,6 @@ const Table = ({ type, data, onDelete }) => {
           <TableHeader>ID</TableHeader>
           <TableHeader>Name</TableHeader>
           <TableHeader>E-mail</TableHeader>
-          {data && data[0] && data[0].authorId && (
-            <TableHeader>Autor</TableHeader>
-          )}
           <TableHeader></TableHeader>
         </tr>
       </thead>
@@ -47,7 +44,6 @@ const Table = ({ type, data, onDelete }) => {
               <TableCell>{item.id}</TableCell>
               <TableCell>{item.name}</TableCell>
               <TableCell>{item.email}</TableCell>
-              {item.authorId && <TableCell>{item.authorId}</TableCell>}
 
               <TableCell style={{ textAlign: "center" }}>
                 <Dialog.Root>
