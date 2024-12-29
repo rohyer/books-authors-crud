@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { FaPlus } from "react-icons/fa";
+import Plus from "../assets/plus.svg";
 import * as Dialog from "@radix-ui/react-dialog";
 import BaseModal from "../components/BaseModal";
 import Table from "../components/Table";
@@ -39,9 +39,9 @@ const RegisterButton = styled.button`
   }
 `;
 
-const PlusIcon = styled(FaPlus)`
-  font-size: 18px;
-  font-weight: 500;
+const PlusIcon = styled.img`
+  width: 20px;
+  height: auto;
   color: #333333;
   transition: all 0.25s;
 `;
@@ -84,7 +84,7 @@ const Authors = () => {
       <Dialog.Root>
         <Dialog.Trigger asChild style={{ textAlign: "center" }}>
           <RegisterButton>
-            <PlusIcon />
+            <PlusIcon src={Plus} />
             Cadastrar Autor
           </RegisterButton>
         </Dialog.Trigger>
