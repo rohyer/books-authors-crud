@@ -14,7 +14,6 @@ const Content = styled(Dialog.Content)`
   border-radius: 6px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
   max-width: 400px;
-  max-height: 400px;
   padding: 15px;
   position: fixed;
   top: 0;
@@ -62,7 +61,11 @@ const BaseModal = ({ title, type, onAddData }) => {
     <Dialog.Portal>
       <Overlay />
 
-      <Content>
+      <Content
+        style={
+          type === "book" ? { maxHeight: "425px" } : { maxHeight: "350px" }
+        }
+      >
         <Title>{title}</Title>
         {type === "book" && (
           <>
