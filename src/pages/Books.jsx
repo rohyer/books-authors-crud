@@ -4,7 +4,7 @@ import Title from "../components/Title";
 import BaseModal from "../components/BaseModal";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useEffect, useState } from "react";
-import { getAllBooks, deleteBook } from "../services/indexedDB";
+import { getAllBooks, deleteBook, getAllAuthors } from "../services/indexedDB";
 
 const StyledBook = styled.div`
   display: flex;
@@ -47,11 +47,14 @@ const PlusIcon = styled.img`
 
 const Books = () => {
   const [books, setBooks] = useState([]);
+  const [authors, setAuthors] = useState([]);
 
   const fetchBooks = async () => {
     try {
       const booksData = await getAllBooks();
       setBooks(booksData);
+      const authorsData = await getAllAuthors();
+      setAuthors(authorsData);
     } catch (error) {
       console.log(`Erro ao buscar livros: ${error}`);
       setBooks([]);
@@ -90,6 +93,7 @@ const Books = () => {
           title="Cadastro de Livro"
           type="book"
           onAddData={handleAddBook}
+          authorsData={authors}
         />
       </Dialog.Root>
 
