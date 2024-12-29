@@ -26,6 +26,24 @@ const Input = styled.input`
   }
 `;
 
+const Select = styled.select`
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  font-style: normal;
+  color: #333;
+  background-color: transparent;
+  height: 40px;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  padding: 0px 10px;
+  margin-top: 15px;
+  transition: all 0.3s;
+  &:focus {
+    background-color: #ddd;
+  }
+`;
+
 const InputError = styled.p`
   font-family: "Open Sans", sans-serif;
   font-size: 14px;
@@ -69,7 +87,7 @@ const SubmitButton = styled.button`
   }
 `;
 
-const BookForm = ({ onAddData }) => {
+const BookForm = ({ onAddData, authorsData }) => {
   const {
     register,
     handleSubmit,
@@ -103,10 +121,17 @@ const BookForm = ({ onAddData }) => {
       />
       {errors.name && <InputError>{errors.name.message}</InputError>}
 
-      <Input
+      <Select
         {...register("author", { required: "Campo obrigatório" })}
         placeholder="Autor"
-      />
+      >
+        {authorsData &&
+          authorsData.map((author) => (
+            <option key={author.id} value={author.id}>
+              {author.name}
+            </option>
+          ))}
+      </Select>
       {errors.author && <InputError>{errors.author.message}</InputError>}
 
       <Input type="number" {...register("pages")} placeholder="Páginas" />
