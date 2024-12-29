@@ -57,7 +57,7 @@ const CloseButton = styled(Dialog.Close)`
   }
 `;
 
-const AuthorModal = ({ title, type }) => {
+const BaseModal = ({ title, type, onAddData }) => {
   return (
     <Dialog.Portal>
       <Overlay />
@@ -69,7 +69,7 @@ const AuthorModal = ({ title, type }) => {
             <Description>
               Cadastre livros através do formulário abaixo
             </Description>
-            <BookForm />
+            <BookForm onAddData={onAddData} />
           </>
         )}
         {type === "author" && (
@@ -77,7 +77,7 @@ const AuthorModal = ({ title, type }) => {
             <Description>
               Cadastre autores através do formulário abaixo
             </Description>
-            <AuthorForm />
+            <AuthorForm onAddData={onAddData} />
           </>
         )}
         <CloseButton aria-label="Close">×</CloseButton>
@@ -86,4 +86,4 @@ const AuthorModal = ({ title, type }) => {
   );
 };
 
-export default AuthorModal;
+export default BaseModal;
