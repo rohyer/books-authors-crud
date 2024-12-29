@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FaTrashAlt } from "react-icons/fa";
+import Trash from "../assets/trash.svg";
 import * as Dialog from "@radix-ui/react-dialog";
 import DeleteModal from "./DeleteModal";
 import Title from "./Title";
@@ -24,11 +24,6 @@ const TableRow = styled.tr`
   &:nth-child(even) {
     background-color: #e0e0e0;
   }
-`;
-
-const TrashIcon = styled(FaTrashAlt)`
-  cursor: pointer;
-  color: #ff0000;
 `;
 
 const Table = ({ type, data, onDelete }) => {
@@ -57,7 +52,15 @@ const Table = ({ type, data, onDelete }) => {
               <TableCell style={{ textAlign: "center" }}>
                 <Dialog.Root>
                   <Dialog.Trigger asChild style={{ textAlign: "center" }}>
-                    <TrashIcon />
+                    <img
+                      src={Trash}
+                      alt="Deletar registro"
+                      style={{
+                        cursor: "pointer",
+                        width: "18px",
+                        height: "auto"
+                      }}
+                    />
                   </Dialog.Trigger>
 
                   <DeleteModal
