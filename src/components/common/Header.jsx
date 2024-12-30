@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 const StyledHeader = styled.header`
   display: flex;
   height: 100px;
-  padding: 1rem 1rem 1.5rem;
+  padding: 0rem 0rem 1.5rem;
 `;
 
 const Nav = styled.nav`
