@@ -4,6 +4,8 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 import * as Dialog from "@radix-ui/react-dialog";
 import ModalDelete from "../modals/ModalDelete";
 import ModalRead from "../modals/ModalRead";
+import { useContext } from "react";
+import { AuthorsBooksContext } from "../../contexts/AuthorsBooksContext";
 
 const StyledTable = styled.table`
   display: block;
@@ -39,7 +41,9 @@ const Span = styled.span`
   }
 `;
 
-const Table = ({ type, data, onDelete }) => {
+const Table = ({ onDelete }) => {
+  const { books } = useContext(AuthorsBooksContext);
+
   return (
     <StyledTable>
       <thead>
@@ -60,30 +64,30 @@ const Table = ({ type, data, onDelete }) => {
         </tr>
       </thead>
       <tbody>
-        {data &&
-          data.map((item) => (
-            <TableRow key={item.id}>
-              <TableCell>{item.id}</TableCell>
+        {books &&
+          books.map((book) => (
+            <TableRow key={book.id}>
+              <TableCell>{book.id}</TableCell>
               <TableCell>
                 <Dialog.Root>
                   <Dialog.Trigger asChild style={{ textAlign: "center" }}>
                     <Span>
                       <FaExternalLinkAlt style={{ marginRight: "5px" }} />
-                      {item.name}
+                      {book.name}
                     </Span>
                   </Dialog.Trigger>
 
                   <ModalRead
-                    type={type}
-                    id={item.id}
-                    name={item.name}
-                    pages={item.pages}
-                    author={item.author}
+                    type="livro"
+                    id={book.id}
+                    name={book.name}
+                    pages={book.pages}
+                    author={book.author}
                   />
                 </Dialog.Root>
               </TableCell>
-              <TableCell>{item.pages}</TableCell>
-              <TableCell>{item.author}</TableCell>
+              <TableCell>{book.pages}</TableCell>
+              <TableCell>{book.author}</TableCell>
 
               <TableCell style={{ textAlign: "center" }}>
                 <Dialog.Root>
@@ -100,9 +104,9 @@ const Table = ({ type, data, onDelete }) => {
                   </Dialog.Trigger>
 
                   <ModalDelete
-                    type={type}
-                    id={item.id}
-                    name={item.name}
+                    type="livro"
+                    id={book.id}
+                    name={book.name}
                     onDelete={onDelete}
                   />
                 </Dialog.Root>
