@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import * as Dialog from "@radix-ui/react-dialog";
-import AuthorForm from "./AuthorForm";
-import BookForm from "./BookForm";
+import FormAuthor from "./FormAuthor";
+import FormBook from "./FormBook";
 
 const Overlay = styled(Dialog.Overlay)`
   background-color: rgba(0, 0, 0, 0.5);
@@ -56,7 +56,7 @@ const CloseButton = styled(Dialog.Close)`
   }
 `;
 
-const BaseModal = ({ title, type, onAddData, authorsData }) => {
+const ModalCreate = ({ title, type, onAddData, authorsData }) => {
   return (
     <Dialog.Portal>
       <Overlay />
@@ -72,7 +72,7 @@ const BaseModal = ({ title, type, onAddData, authorsData }) => {
             <Description>
               Cadastre livros através do formulário abaixo
             </Description>
-            <BookForm onAddData={onAddData} authorsData={authorsData} />
+            <FormBook onAddData={onAddData} authorsData={authorsData} />
           </>
         )}
         {type === "author" && (
@@ -80,7 +80,7 @@ const BaseModal = ({ title, type, onAddData, authorsData }) => {
             <Description>
               Cadastre autores através do formulário abaixo
             </Description>
-            <AuthorForm onAddData={onAddData} />
+            <FormAuthor onAddData={onAddData} />
           </>
         )}
         <CloseButton aria-label="Close">×</CloseButton>
@@ -89,4 +89,4 @@ const BaseModal = ({ title, type, onAddData, authorsData }) => {
   );
 };
 
-export default BaseModal;
+export default ModalCreate;

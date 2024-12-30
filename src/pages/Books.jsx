@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import TableBooks from "../components/TableBooks";
 import Title from "../components/Title";
-import BaseModal from "../components/BaseModal";
+import ModalCreate from "../components/ModalCreate";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useEffect, useState } from "react";
 import { getAllBooks, deleteBook, getAllAuthors } from "../services/indexedDB";
@@ -89,7 +89,7 @@ const Books = () => {
           </RegisterButton>
         </Dialog.Trigger>
 
-        <BaseModal
+        <ModalCreate
           title="Cadastro de Livro"
           type="book"
           onAddData={handleAddBook}

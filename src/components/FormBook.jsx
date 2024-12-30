@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { addAuthor } from "../services/indexedDB";
+import { addBook } from "../services/indexedDB";
 import { useState } from "react";
 
 const Form = styled.form`
@@ -9,6 +9,24 @@ const Form = styled.form`
 `;
 
 const Input = styled.input`
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  font-style: normal;
+  color: #333;
+  background-color: #fff;
+  height: 40px;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  padding: 0px 10px;
+  margin-top: 15px;
+  transition: all 0.3s;
+  &:focus {
+    background-color: #ddd;
+  }
+`;
+
+const Select = styled.select`
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
   font-weight: 500;
@@ -69,7 +87,7 @@ const SubmitButton = styled.button`
   }
 `;
 
-const AuthorForm = ({ onAddData }) => {
+const FormBook = ({ onAddData, authorsData }) => {
   const {
     register,
     handleSubmit,
@@ -85,10 +103,10 @@ const AuthorForm = ({ onAddData }) => {
     setSubmitError("");
 
     try {
-      const newAuthor = await addAuthor(data);
+      const newBook = await addBook(data);
 
-      setSubmitSuccess("Autor cadastrado com sucesso!");
-      onAddData(newAuthor);
+      setSubmitSuccess("Livro cadastrado com sucesso!");
+      onAddData(newBook);
       reset();
     } catch (error) {
       setSubmitError(error);
@@ -109,7 +127,23 @@ const AuthorForm = ({ onAddData }) => {
       />
       {errors.name && <InputError>{errors.name.message}</InputError>}
 
-      <Input {...register("email")} placeholder="E-mail" type="email" />
+      <Select
+        {...register("author", { required: "Campo obrigatório" })}
+        defaultValue=""
+      >
+        <option value="" disabled>
+          Autor
+        </option>
+        {authorsData &&
+          authorsData.map((author) => (
+            <option key={author.id} value={author.id}>
+              {author.name}
+            </option>
+          ))}
+      </Select>
+      {errors.author && <InputError>{errors.author.message}</InputError>}
+
+      <Input type="number" {...register("pages")} placeholder="Páginas" />
 
       <SubmitButton
         onClick={handleClick}
@@ -125,4 +159,4 @@ const AuthorForm = ({ onAddData }) => {
   );
 };
 
-export default AuthorForm;
+export default FormBook;

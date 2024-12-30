@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Trash from "../assets/trash.svg";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import * as Dialog from "@radix-ui/react-dialog";
-import DeleteModal from "./DeleteModal";
+import ModalDelete from "./ModalDelete";
 
 const StyledTable = styled.table`
   width: 100%;
@@ -76,7 +76,7 @@ const Table = ({ type, data, onDelete }) => {
                     />
                   </Dialog.Trigger>
 
-                  <DeleteModal
+                  <ModalDelete
                     type={type}
                     id={item.id}
                     name={item.name}

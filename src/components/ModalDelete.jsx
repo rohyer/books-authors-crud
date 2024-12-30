@@ -86,7 +86,7 @@ const CancelButton = styled(Dialog.Close)`
   }
 `;
 
-const DeleteModal = ({ type, id, name, onDelete }) => {
+const ModalDelete = ({ type, id, name, onDelete }) => {
   return (
     <Dialog.Portal>
       <Overlay />
@@ -107,4 +107,4 @@ const DeleteModal = ({ type, id, name, onDelete }) => {
   );
 };
 
-export default DeleteModal;
+export default ModalDelete;

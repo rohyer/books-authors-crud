@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import * as Dialog from "@radix-ui/react-dialog";
-import BaseModal from "../components/BaseModal";
+import ModalCreate from "../components/ModalCreate";
 import TableAuthors from "../components/TableAuthors";
 import Title from "../components/Title";
 import { getAllAuthors, deleteAuthor } from "../services/indexedDB";
@@ -78,7 +78,7 @@ const Authors = () => {
           <RegisterButton>Cadastrar Autor</RegisterButton>
         </Dialog.Trigger>
 
-        <BaseModal
+        <ModalCreate
           title="Cadastro de Autor"
           type="author"
           onAddData={handleAddAuthor}
