@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { addBook } from "../../services/indexedDB";
-import { useState } from "react";
+import { AuthorsBooksContext } from "../../contexts/AuthorsBooksContext";
+import { useContext, useState } from "react";
 
 const Form = styled.form`
   display: flex;
@@ -87,7 +88,7 @@ const SubmitButton = styled.button`
   }
 `;
 
-const FormBook = ({ onAddData, authorsData }) => {
+const FormBook = () => {
   const {
     register,
     handleSubmit,
@@ -95,6 +96,7 @@ const FormBook = ({ onAddData, authorsData }) => {
     formState: { errors }
   } = useForm();
 
+  const { authors, addBookToState } = useContext(AuthorsBooksContext);
   const [submitSuccess, setSubmitSuccess] = useState("");
   const [submitError, setSubmitError] = useState("");
 
@@ -106,7 +108,7 @@ const FormBook = ({ onAddData, authorsData }) => {
       const newBook = await addBook(data);
 
       setSubmitSuccess("Livro cadastrado com sucesso!");
-      onAddData(newBook);
+      addBookToState(newBook);
       reset();
     } catch (error) {
       setSubmitError(error);
@@ -134,8 +136,8 @@ const FormBook = ({ onAddData, authorsData }) => {
         <option value="" disabled>
           Autor
         </option>
-        {authorsData &&
-          authorsData.map((author) => (
+        {authors &&
+          authors.map((author) => (
             <option key={author.id} value={author.id}>
               {author.name}
             </option>

@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { addAuthor } from "../../services/indexedDB";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthorsBooksContext } from "../../contexts/AuthorsBooksContext";
 
 const Form = styled.form`
   display: flex;
@@ -69,7 +70,7 @@ const SubmitButton = styled.button`
   }
 `;
 
-const FormAuthor = ({ onAddData }) => {
+const FormAuthor = () => {
   const {
     register,
     handleSubmit,
@@ -77,6 +78,7 @@ const FormAuthor = ({ onAddData }) => {
     formState: { errors }
   } = useForm();
 
+  const { addAuthorToState } = useContext(AuthorsBooksContext);
   const [submitSuccess, setSubmitSuccess] = useState("");
   const [submitError, setSubmitError] = useState("");
 
@@ -88,7 +90,7 @@ const FormAuthor = ({ onAddData }) => {
       const newAuthor = await addAuthor(data);
 
       setSubmitSuccess("Autor cadastrado com sucesso!");
-      onAddData(newAuthor);
+      addAuthorToState(newAuthor);
       reset();
     } catch (error) {
       setSubmitError(error);
