@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import * as Dialog from "@radix-ui/react-dialog";
-import FormAuthor from "./FormAuthor";
-import FormBook from "./FormBook";
+import FormAuthor from "../authors/FormAuthor";
+import FormBook from "../books/FormBook";
 
 const Overlay = styled(Dialog.Overlay)`
   background-color: rgba(0, 0, 0, 0.5);

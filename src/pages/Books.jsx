@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import TableBooks from "../components/TableBooks";
-import Title from "../components/Title";
-import ModalCreate from "../components/ModalCreate";
+import TableBook from "../components/books/TableBook";
+import Title from "../components/common/Title";
+import ModalCreate from "../components/modals/ModalCreate";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useEffect, useState } from "react";
 import { getAllBooks, deleteBook, getAllAuthors } from "../services/indexedDB";
@@ -100,7 +100,7 @@ const Books = () => {
       {!Array.isArray(books) || books.length === 0 ? (
         <Title title="Nenhum livro cadastrado!" />
       ) : (
-        <TableBooks type="livro" data={books} onDelete={handleDelete} />
+        <TableBook type="livro" data={books} onDelete={handleDelete} />
       )}
     </StyledBook>
   );

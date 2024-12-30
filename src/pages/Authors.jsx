@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import * as Dialog from "@radix-ui/react-dialog";
-import ModalCreate from "../components/ModalCreate";
-import TableAuthors from "../components/TableAuthors";
-import Title from "../components/Title";
+import ModalCreate from "../components/modals/ModalCreate";
+import TableAuthor from "../components/authors/TableAuthor";
+import Title from "../components/common/Title";
 import { getAllAuthors, deleteAuthor } from "../services/indexedDB";
 
 const StyledAuthor = styled.div`
@@ -88,7 +88,7 @@ const Authors = () => {
       {!Array.isArray(authors) || authors.length === 0 ? (
         <Title title="Nenhum autor cadastrado!" />
       ) : (
-        <TableAuthors type="autor" data={authors} onDelete={handleDelete} />
+        <TableAuthor type="autor" data={authors} onDelete={handleDelete} />
       )}
     </StyledAuthor>
   );

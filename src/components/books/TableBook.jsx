@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import Trash from "../assets/trash.svg";
+import Trash from "../../assets/trash.svg";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import * as Dialog from "@radix-ui/react-dialog";
-import ModalDelete from "./ModalDelete";
-import ModalRead from "./ModalRead";
+import ModalDelete from "../modals/ModalDelete";
+import ModalRead from "../modals/ModalRead";
 
 const StyledTable = styled.table`
   display: block;
