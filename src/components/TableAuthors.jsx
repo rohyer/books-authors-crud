@@ -39,6 +39,7 @@ const Span = styled.span`
 
   &:hover {
     color: #535bf2;
+    text-decoration: underline;
   }
 `;
 
