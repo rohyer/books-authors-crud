@@ -53,8 +53,6 @@ const Books = () => {
       const authorsData = await getAllAuthors();
       addAllBooksToState(booksData);
       addAllAuthorsToState(authorsData);
-
-      console.log(booksData);
     } catch (error) {
       console.log(`Erro ao buscar livros: ${error}`);
       addAllBooksToState([]);
