@@ -14,7 +14,7 @@ const Input = styled.input`
   font-weight: 500;
   font-style: normal;
   color: #333;
-  background-color: transparent;
+  background-color: #fff;
   height: 40px;
   border: 1px solid #aaa;
   border-radius: 3px;
@@ -95,17 +95,24 @@ const AuthorForm = ({ onAddData }) => {
     }
   };
 
+  const handleClick = () => {
+    setSubmitSuccess("");
+    setSubmitError("");
+  };
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Input
         {...register("name", { required: "Campo obrigatório" })}
         placeholder="Nome"
+        type="text"
       />
       {errors.name && <InputError>{errors.name.message}</InputError>}
 
-      <Input {...register("email")} placeholder="E-mail" />
+      <Input {...register("email")} placeholder="E-mail" type="email" />
 
       <SubmitButton
+        onClick={handleClick}
         type="submit"
         style={{ padding: "10px 20px", fontSize: "16px" }}
       >
