@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const StyledHeader = styled.header`
