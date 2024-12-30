@@ -56,7 +56,7 @@ const CloseButton = styled(Dialog.Close)`
   }
 `;
 
-const ModalCreate = ({ title, type, onAddData, authorsData }) => {
+const ModalCreate = ({ title, type }) => {
   return (
     <Dialog.Portal>
       <Overlay />
@@ -72,7 +72,7 @@ const ModalCreate = ({ title, type, onAddData, authorsData }) => {
             <Description>
               Cadastre livros através do formulário abaixo
             </Description>
-            <FormBook onAddData={onAddData} authorsData={authorsData} />
+            <FormBook />
           </>
         )}
         {type === "author" && (
@@ -80,7 +80,7 @@ const ModalCreate = ({ title, type, onAddData, authorsData }) => {
             <Description>
               Cadastre autores através do formulário abaixo
             </Description>
-            <FormAuthor onAddData={onAddData} />
+            <FormAuthor />
           </>
         )}
         <CloseButton aria-label="Close">×</CloseButton>
