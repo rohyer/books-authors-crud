@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import * as Dialog from "@radix-ui/react-dialog";
-import AuthorForm from "./AuthorForm";
-import BookForm from "./BookForm";
 
 const Overlay = styled(Dialog.Overlay)`
   background-color: rgba(0, 0, 0, 0.5);
@@ -14,6 +12,7 @@ const Content = styled(Dialog.Content)`
   border-radius: 6px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
   max-width: 400px;
+  max-height: 175px;
   padding: 15px;
   position: fixed;
   top: 0;
@@ -56,37 +55,56 @@ const CloseButton = styled(Dialog.Close)`
   }
 `;
 
-const BaseModal = ({ title, type, onAddData, authorsData }) => {
+const DeleteButton = styled.button`
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  color: #ffffff;
+  background-color: #ff0000aa;
+  border: none;
+  transition: all 0.25s;
+
+  &:hover {
+    background-color: #ff0000;
+  }
+`;
+
+const CancelButton = styled(Dialog.Close)`
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  color: #333;
+  background-color: #ddd;
+  border: none;
+  margin-left: 15px;
+  transition: all 0.25s;
+
+  &:hover {
+    background-color: #bbb;
+  }
+`;
+
+const DeleteModal = ({ type, id, name, onDelete }) => {
   return (
     <Dialog.Portal>
       <Overlay />
 
-      <Content
-        style={
-          type === "book" ? { maxHeight: "425px" } : { maxHeight: "350px" }
-        }
-      >
-        <Title>{title}</Title>
-        {type === "book" && (
-          <>
-            <Description>
-              Cadastre livros através do formulário abaixo
-            </Description>
-            <BookForm onAddData={onAddData} authorsData={authorsData} />
-          </>
-        )}
-        {type === "author" && (
-          <>
-            <Description>
-              Cadastre autores através do formulário abaixo
-            </Description>
-            <AuthorForm onAddData={onAddData} />
-          </>
-        )}
+      <Content>
+        <Title>Deletar registro</Title>
+
+        <Description>
+          Deseja mesmo deletar o {type} {name}?
+        </Description>
+
+        <DeleteButton onClick={() => onDelete(id)}>Deletar</DeleteButton>
+        <CancelButton>Cancelar</CancelButton>
+
         <CloseButton aria-label="Close">×</CloseButton>
       </Content>
     </Dialog.Portal>
   );
 };
 
-export default BaseModal;
+export default DeleteModal;

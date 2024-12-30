@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import * as Dialog from "@radix-ui/react-dialog";
-import BaseModal from "./BaseModal";
 
 const StyledHeader = styled.header`
   display: flex;
   height: 100px;
-  padding: 1rem;
+  padding: 1rem 1rem 1.5rem;
 `;
 
 const Nav = styled.nav`
@@ -39,10 +38,10 @@ const Nav = styled.nav`
           width: 100%;
         }
 
-        & > ul {
+        /* & > ul {
           opacity: 1;
           pointer-events: all;
-        }
+        } */
       }
 
       &:after {
@@ -59,13 +58,13 @@ const Nav = styled.nav`
         transition: all 0.2s;
       }
 
-      &:nth-child(4) {
+      /* &:nth-child(4) {
         &:hover {
           &:after {
             width: 140px;
           }
         }
-      }
+      } */
 
       & > a {
         position: relative;
@@ -75,40 +74,6 @@ const Nav = styled.nav`
         font-weight: 600;
         color: #707070;
         transition: all 0.25s;
-      }
-    }
-  }
-`;
-
-const SecondLevel = styled.ul`
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 60px;
-  opacity: 0;
-  pointer-events: none;
-  background-color: #fff;
-  box-shadow: 0px 2px 8px 0px #717171;
-  padding: 15px 0;
-  gap: 15px;
-  width: 140px;
-  margin: 0;
-  transition: all 0.25s;
-
-  & > li {
-    list-style: none;
-
-    & > a {
-      font-family: "Montserrat", sans-serif;
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 600;
-      color: #707070;
-      padding: 0px 20px;
-      transition: all 0.25s;
-
-      &:hover {
-        color: #333;
       }
     }
   }
@@ -127,30 +92,6 @@ function Header() {
           </li>
           <li>
             <Link to="autores">Autores</Link>
-          </li>
-          <li>
-            <Link to="#">Cadastrar</Link>
-
-            <SecondLevel>
-              <li>
-                <Dialog.Root>
-                  <Dialog.Trigger asChild>
-                    <a href="#">Livro</a>
-                  </Dialog.Trigger>
-
-                  <BaseModal title="Cadastro de Livro" />
-                </Dialog.Root>
-              </li>
-              <li>
-                <Dialog.Root>
-                  <Dialog.Trigger asChild>
-                    <a href="#">Autor</a>
-                  </Dialog.Trigger>
-
-                  <BaseModal title="Cadastro de Autor" />
-                </Dialog.Root>
-              </li>
-            </SecondLevel>
           </li>
         </ul>
       </Nav>
