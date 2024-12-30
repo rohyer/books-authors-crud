@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import Trash from "../assets/trash.svg";
+import { FaExternalLinkAlt } from "react-icons/fa";
 import * as Dialog from "@radix-ui/react-dialog";
 import DeleteModal from "./DeleteModal";
-import Title from "./Title";
 
 const StyledTable = styled.table`
   width: 100%;
@@ -26,6 +26,15 @@ const TableRow = styled.tr`
   }
 `;
 
+const Span = styled.span`
+  cursor: pointer;
+  color: #646cff;
+
+  &:hover {
+    color: #535bf2;
+  }
+`;
+
 const Table = ({ type, data, onDelete }) => {
   return (
     <StyledTable>
@@ -43,7 +52,12 @@ const Table = ({ type, data, onDelete }) => {
           data.map((item) => (
             <TableRow key={item.id}>
               <TableCell>{item.id}</TableCell>
-              <TableCell>{item.name}</TableCell>
+              <TableCell>
+                <Span>
+                  <FaExternalLinkAlt style={{ marginRight: "5px" }} />
+                  {item.name}
+                </Span>
+              </TableCell>
               <TableCell>{item.pages}</TableCell>
               <TableCell>{item.author}</TableCell>
 
