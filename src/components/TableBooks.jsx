@@ -3,6 +3,7 @@ import Trash from "../assets/trash.svg";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import * as Dialog from "@radix-ui/react-dialog";
 import ModalDelete from "./ModalDelete";
+import ModalRead from "./ModalRead";
 
 const StyledTable = styled.table`
   width: 100%;
@@ -54,10 +55,22 @@ const Table = ({ type, data, onDelete }) => {
             <TableRow key={item.id}>
               <TableCell>{item.id}</TableCell>
               <TableCell>
-                <Span>
-                  <FaExternalLinkAlt style={{ marginRight: "5px" }} />
-                  {item.name}
-                </Span>
+                <Dialog.Root>
+                  <Dialog.Trigger asChild style={{ textAlign: "center" }}>
+                    <Span>
+                      <FaExternalLinkAlt style={{ marginRight: "5px" }} />
+                      {item.name}
+                    </Span>
+                  </Dialog.Trigger>
+
+                  <ModalRead
+                    type={type}
+                    id={item.id}
+                    name={item.name}
+                    pages={item.pages}
+                    author={item.author}
+                  />
+                </Dialog.Root>
               </TableCell>
               <TableCell>{item.pages}</TableCell>
               <TableCell>{item.author}</TableCell>
