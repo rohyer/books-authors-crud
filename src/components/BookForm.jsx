@@ -14,7 +14,7 @@ const Input = styled.input`
   font-weight: 500;
   font-style: normal;
   color: #333;
-  background-color: transparent;
+  background-color: #fff;
   height: 40px;
   border: 1px solid #aaa;
   border-radius: 3px;
@@ -32,7 +32,7 @@ const Select = styled.select`
   font-weight: 500;
   font-style: normal;
   color: #333;
-  background-color: transparent;
+  background-color: #fff;
   height: 40px;
   border: 1px solid #aaa;
   border-radius: 3px;
@@ -113,18 +113,27 @@ const BookForm = ({ onAddData, authorsData }) => {
     }
   };
 
+  const handleClick = () => {
+    setSubmitSuccess("");
+    setSubmitError("");
+  };
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Input
         {...register("name", { required: "Campo obrigatório" })}
         placeholder="Nome"
+        type="text"
       />
       {errors.name && <InputError>{errors.name.message}</InputError>}
 
       <Select
         {...register("author", { required: "Campo obrigatório" })}
-        placeholder="Autor"
+        defaultValue=""
       >
+        <option value="" disabled>
+          Autor
+        </option>
         {authorsData &&
           authorsData.map((author) => (
             <option key={author.id} value={author.id}>
@@ -137,6 +146,7 @@ const BookForm = ({ onAddData, authorsData }) => {
       <Input type="number" {...register("pages")} placeholder="Páginas" />
 
       <SubmitButton
+        onClick={handleClick}
         type="submit"
         style={{ padding: "10px 20px", fontSize: "16px" }}
       >
