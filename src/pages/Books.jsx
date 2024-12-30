@@ -3,8 +3,9 @@ import TableBook from "../components/books/TableBook";
 import Title from "../components/common/Title";
 import ModalCreate from "../components/modals/ModalCreate";
 import * as Dialog from "@radix-ui/react-dialog";
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { getAllBooks, deleteBook, getAllAuthors } from "../services/indexedDB";
+import { AuthorsBooksContext } from "../contexts/AuthorsBooksContext";
 
 const StyledBook = styled.div`
   display: flex;
@@ -38,38 +39,33 @@ const RegisterButton = styled.button`
   }
 `;
 
-const PlusIcon = styled.img`
-  width: 20px;
-  height: auto;
-  color: #333333;
-  transition: all 0.25s;
-`;
-
 const Books = () => {
-  const [books, setBooks] = useState([]);
-  const [authors, setAuthors] = useState([]);
+  const {
+    books,
+    addAllBooksToState,
+    deleteBookFromState,
+    addAllAuthorsToState
+  } = useContext(AuthorsBooksContext);
 
   const fetchBooks = async () => {
     try {
       const booksData = await getAllBooks();
-      setBooks(booksData);
       const authorsData = await getAllAuthors();
-      setAuthors(authorsData);
+      addAllBooksToState(booksData);
+      addAllAuthorsToState(authorsData);
+
+      console.log(booksData);
     } catch (error) {
       console.log(`Erro ao buscar livros: ${error}`);
-      setBooks([]);
+      addAllBooksToState([]);
     }
-  };
-
-  const handleAddBook = async (newBook) => {
-    setBooks((prevBooks) => [...prevBooks, newBook]);
   };
 
   const handleDelete = async (id) => {
     try {
       const result = await deleteBook(id);
       alert(result);
-      setBooks((prevBooks) => prevBooks.filter((book) => book.id !== id));
+      deleteBookFromState(id);
     } catch (error) {
       console.error(error);
     }
@@ -83,24 +79,16 @@ const Books = () => {
     <StyledBook>
       <Dialog.Root>
         <Dialog.Trigger asChild style={{ textAlign: "center" }}>
-          <RegisterButton>
-            {/* <PlusIcon src={Plus} /> */}
-            Cadastrar Livro
-          </RegisterButton>
+          <RegisterButton>Cadastrar Livro</RegisterButton>
         </Dialog.Trigger>
 
-        <ModalCreate
-          title="Cadastro de Livro"
-          type="book"
-          onAddData={handleAddBook}
-          authorsData={authors}
-        />
+        <ModalCreate title="Cadastro de Livro" type="book" />
       </Dialog.Root>
 
       {!Array.isArray(books) || books.length === 0 ? (
         <Title title="Nenhum livro cadastrado!" />
       ) : (
-        <TableBook type="livro" data={books} onDelete={handleDelete} />
+        <TableBook type="livro" onDelete={handleDelete} />
       )}
     </StyledBook>
   );

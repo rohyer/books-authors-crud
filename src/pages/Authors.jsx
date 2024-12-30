@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import * as Dialog from "@radix-ui/react-dialog";
 import ModalCreate from "../components/modals/ModalCreate";
 import TableAuthor from "../components/authors/TableAuthor";
 import Title from "../components/common/Title";
 import { getAllAuthors, deleteAuthor } from "../services/indexedDB";
+import { AuthorsBooksContext } from "../contexts/AuthorsBooksContext";
 
 const StyledAuthor = styled.div`
   display: flex;
@@ -39,29 +40,25 @@ const RegisterButton = styled.button`
 `;
 
 const Authors = () => {
-  const [authors, setAuthors] = useState([]);
+  const { authors, addAllAuthorsToState, deleteAuthorFromState } =
+    useContext(AuthorsBooksContext);
 
   const fetchAuthors = async () => {
     try {
       const authorsData = await getAllAuthors();
-      setAuthors(authorsData);
+
+      addAllAuthorsToState(authorsData);
     } catch (error) {
       console.log(`Erro ao buscar autores: ${error}`);
-      setAuthors([]);
+      addAllAuthorsToState([]);
     }
-  };
-
-  const handleAddAuthor = async (newAuthor) => {
-    setAuthors((prevAuthors) => [...prevAuthors, newAuthor]);
   };
 
   const handleDelete = async (id) => {
     try {
       const result = await deleteAuthor(id);
       alert(result);
-      setAuthors((prevAuthors) =>
-        prevAuthors.filter((author) => author.id !== id)
-      );
+      deleteAuthorFromState(id);
     } catch (error) {
       console.error(error);
     }
@@ -78,17 +75,13 @@ const Authors = () => {
           <RegisterButton>Cadastrar Autor</RegisterButton>
         </Dialog.Trigger>
 
-        <ModalCreate
-          title="Cadastro de Autor"
-          type="author"
-          onAddData={handleAddAuthor}
-        />
+        <ModalCreate title="Cadastro de Autor" type="author" />
       </Dialog.Root>
 
       {!Array.isArray(authors) || authors.length === 0 ? (
         <Title title="Nenhum autor cadastrado!" />
       ) : (
-        <TableAuthor type="autor" data={authors} onDelete={handleDelete} />
+        <TableAuthor type="autor" onDelete={handleDelete} />
       )}
     </StyledAuthor>
   );
