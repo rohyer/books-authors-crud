@@ -6,7 +6,9 @@ import ModalDelete from "./ModalDelete";
 import ModalRead from "./ModalRead";
 
 const StyledTable = styled.table`
+  display: block;
   width: 100%;
+  overflow-x: auto;
   margin: 20px auto 0px;
 `;
 
@@ -42,11 +44,19 @@ const Table = ({ type, data, onDelete }) => {
     <StyledTable>
       <thead>
         <tr>
-          <TableHeader>ID</TableHeader>
-          <TableHeader>Name</TableHeader>
-          <TableHeader>Pages</TableHeader>
-          <TableHeader>ID Author</TableHeader>
-          <TableHeader></TableHeader>
+          <TableHeader style={{ width: "8%", minWidth: "100px" }}>
+            ID
+          </TableHeader>
+          <TableHeader style={{ width: "40%", minWidth: "250px" }}>
+            Name
+          </TableHeader>
+          <TableHeader style={{ width: "40%", minWidth: "250px" }}>
+            Pages
+          </TableHeader>
+          <TableHeader style={{ width: "8%", minWidth: "100px" }}>
+            ID Author
+          </TableHeader>
+          <TableHeader style={{ width: "5%", minWidth: "80px" }}></TableHeader>
         </tr>
       </thead>
       <tbody>
@@ -83,7 +93,7 @@ const Table = ({ type, data, onDelete }) => {
                       alt="Deletar registro"
                       style={{
                         cursor: "pointer",
-                        width: "18px",
+                        width: "15px",
                         height: "auto"
                       }}
                     />
