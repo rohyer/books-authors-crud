@@ -54,7 +54,7 @@ const Span = styled.span`
  * @param {function} props.onDelete - Callback para excluir um livro. Recebe o ID do livro como parâmetro.
  * @returns {JSX.Element} - O componente TableBooks.
  */
-const Table = ({ onDelete }) => {
+const TableBooks = ({ onDelete }) => {
   const { books } = useContext(AuthorsBooksContext);
 
   return (
@@ -131,4 +131,4 @@ const Table = ({ onDelete }) => {
   );
 };
 
-export default Table;
+export default TableBooks;
