@@ -81,9 +81,25 @@ const Nav = styled.nav`
   }
 `;
 
+/**
+ * Componente de cabeçalho com a navegação do site.
+ *
+ * Exibe links para as páginas "Home", "Livros" e "Autores"
+ * Aplica uma classe activeLink para estilizar o link que
+ * está ativo com base no caminho atual da URL.
+ *
+ * @component
+ * @returns {JSX.Element} - O cabeçalho com a navegação.
+ */
 function Header() {
   const location = useLocation();
 
+  /**
+   * Verifica o caminho do link atual.
+   *
+   * @param {string} path - Caminho a ser verificado.
+   * @returns {boolean} `true` se o caminho for o atual, se não retorna `false`.
+   */
   const isActive = (path) => location.pathname === path;
 
   return (

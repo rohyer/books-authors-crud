@@ -16,6 +16,14 @@ const StyledSubmitButton = styled.button`
   }
 `;
 
+/**
+ * Componente que renderiza um botão de envio de formulário.
+ *
+ * @component
+ * @param {Object} props - Propriedades do componente.
+ * @param {function} props.onClick - Callback para enviar o formulário.
+ * @returns {JSX.Element} - Um botão de envio de formulário.
+ */
 const SubmitButton = ({ onClick }) => {
   return (
     <StyledSubmitButton type="submit" onClick={onClick}>

@@ -9,6 +9,14 @@ const StyledTitle = styled.h1`
   color: #333;
 `;
 
+/**
+ * Componente que renderiza um título.
+ *
+ * @component
+ * @param {Object} props - Propriedades do componente.
+ * @param {string} props.title - O texto do título.
+ * @returns {JSX.Element} - O Título.
+ */
 const Title = ({ title }) => {
   return <StyledTitle>{title}</StyledTitle>;
 };

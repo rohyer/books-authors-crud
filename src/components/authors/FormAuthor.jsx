@@ -39,6 +39,17 @@ const InputError = styled.p`
   margin: 5px 0px 0px;
 `;
 
+/**
+ * Componente responsável por renderizar um formulário para
+ * cadastro de autores.
+ *
+ * Permite inserir nome e e-mail do autor.
+ * O formulário utilização validação de campos e exibe mensagens
+ * de sucesso ou erro.
+ *
+ * @component
+ * @returns {JSX.Element} O formulário de cadastro de autor
+ */
 const FormAuthor = () => {
   const {
     register,
@@ -51,6 +62,14 @@ const FormAuthor = () => {
   const [submitSuccess, setSubmitSuccess] = useState("");
   const [submitError, setSubmitError] = useState("");
 
+  /**
+   * Função que é chamada para enviar o formulário.
+   *
+   * @async
+   * @param {Object} data - Dados coletados do formulário.
+   * @param {string} data.name - Nome do autor.
+   * @param {string} data.email - E-mail do autor.
+   */
   const onSubmit = async (data) => {
     setSubmitSuccess("");
     setSubmitError("");
@@ -66,6 +85,10 @@ const FormAuthor = () => {
     }
   };
 
+  /**
+   * Função que reseta as mensagens de sucesso e erro ao clicar
+   * no botão enviar.
+   */
   const handleClick = () => {
     setSubmitSuccess("");
     setSubmitError("");

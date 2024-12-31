@@ -39,10 +39,25 @@ const RegisterButton = styled.button`
   }
 `;
 
+/**
+ * Componente que representa a página de autores para gerenciá-los.
+ *
+ * Este componente utiliza funções de manipulação do IndexedDB e o contexto AuthorsBooksContext para carregar, exibir e excluir autores.
+ * Ele também permite cadastrar novos autores usando o componente ModalCreate.
+ *
+ * @component
+ * @returns {JSX.Element} O componente Authors.
+ */
 const Authors = () => {
   const { authors, addAllAuthorsToState, deleteAuthorFromState } =
     useContext(AuthorsBooksContext);
 
+  /**
+   * Busca todos os autores no IndexedDB e atualiza o estado global.
+   *
+   * @async
+   * @function fetchAuthors
+   */
   const fetchAuthors = async () => {
     try {
       const authorsData = await getAllAuthors();
@@ -54,6 +69,13 @@ const Authors = () => {
     }
   };
 
+  /**
+   * Exclui um autor e todos os seus livros associados do IndexedDB.
+   *
+   * @async
+   * @function handleDelete
+   * @param {number} id - O ID do autor a ser excluído
+   */
   const handleDelete = async (id) => {
     try {
       const deletedAuthorResult = await deleteAuthor(id);

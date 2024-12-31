@@ -56,6 +56,17 @@ const CancelButton = styled(Dialog.Close)`
   }
 `;
 
+/**
+ * Componente que renderiza um modal de remoção de
+ * autores ou livros criado com Radix UI.
+ *
+ * @param {Object} props - As propriedades do componente.
+ * @param {string} props.type - Tipo do item a ser deletado (ex: "autor", "livro").
+ * @param {number} props.id - ID do item a ser deletado.
+ * @param {string} props.name - Nome do item a ser deletado.
+ * @param {function} props.onDelete - Função responsável pela exclusão do item.
+ * @returns {JSX.Element} O componente ModalDelete
+ */
 const ModalDelete = ({ type, id, name, onDelete }) => {
   return (
     <Dialog.Portal>

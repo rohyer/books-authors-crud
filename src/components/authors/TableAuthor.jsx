@@ -41,6 +41,19 @@ const Span = styled.span`
   }
 `;
 
+/**
+ * Componente responsável por renderizar uma tabela de autores.
+ *
+ * Exibe os autores disponíveis no contexto AuthorsBooksContext,
+ * com funcionalidades para visualizar e excluir autores usando os
+ * modais ModalRead e ModalDelete. Cada linha da tabela possui o
+ * id, nome, e-mail e ações para o autor.
+ *
+ * @component
+ * @param {Object} props - Propriedades do componente.
+ * @param {function} props.onDelete - Callback para excluir um autor. Recebe o ID do autor como parâmetro.
+ * @returns {JSX.Element} - Uma tabela de autores.
+ */
 const TableAuthor = ({ onDelete }) => {
   const { authors } = useContext(AuthorsBooksContext);
 

@@ -1,3 +1,12 @@
+/**
+ * Inicializa o banco de dados IndexedDB "LibraryDB",
+ * criando os object stores e os índices para armazenar
+ * dados de autores e livros.
+ *
+ * @returns {Promise<IDBDatabase>} A promise que resolve a instância do IndexedDB.
+ * @throws {Error} Caso ocorra um erro ao inicializar o IndexedDB.
+ */
+
 export const initDB = () => {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open("LibraryDB", 2);
@@ -37,7 +46,16 @@ export const initDB = () => {
   });
 };
 
-// Authors functions
+/**
+ * Adiciona um novo autor ao IndexedDB, verificando
+ * se o e-mail já está cadastrado.
+ *
+ * @param {Object} author - O autor a ser adicionado.
+ * @param {string} author.name - O nome do autor.
+ * @param {string} author.email - O e-mail do autor.
+ * @returns {Promise<Object>} - A promise com a adição do autor.
+ * @throws {Error} - Se o e-mail do autor já estiver cadastrado ou ocorrer um erro ao adicioná-lo.
+ */
 export const addAuthor = async (author) => {
   const db = await initDB();
   const transaction = db.transaction("authors", "readwrite");
@@ -72,6 +90,12 @@ export const addAuthor = async (author) => {
   });
 };
 
+/**
+ * Retorna todos os autores do IndexedDB.
+ *
+ * @returns {Promise<Array>} - A promise com a lista de todos os autores.
+ * @throws {Error} - Se ocorrer um erro ao buscar os autores
+ */
 export const getAllAuthors = async () => {
   const db = await initDB();
   const transaction = db.transaction("authors", "readonly");
@@ -90,6 +114,14 @@ export const getAllAuthors = async () => {
   });
 };
 
+/**
+ * Deleta um autor do IndexedDB pelo ID.
+ * Também deleta os livros associados a esse autor.
+ *
+ * @param {number} id - O ID do autor que será deletado.
+ * @returns {Promise<String>} - A promise que resolve com uma mensagem de sucesso.
+ * @throws {Error} - Se ocorrer um erro ao deletar um autor ou seus livros.
+ */
 export const deleteAuthor = async (id) => {
   const db = await initDB();
   const transaction = db.transaction("authors", "readwrite");
@@ -108,7 +140,16 @@ export const deleteAuthor = async (id) => {
   });
 };
 
-// Books functions
+/**
+ * Adiciona um novo livro ao IndexedDB.
+ *
+ * @param {Object} book - O livro a ser adicionado.
+ * @param {string} book.name - O nome do livro.
+ * @param {string} book.author_id - O ID do autor do livro.
+ * @param {number} book.pages - O número de páginas do livro.
+ * @returns {Promise<Object>} - A promise resolvida com o livro adicionado.
+ * @throws {Error} - Se ocorrer um erro ao adicionar o livro.
+ */
 export const addBook = async (book) => {
   const db = await initDB();
   const transaction = db.transaction(["books", "authors"], "readwrite");
@@ -129,6 +170,12 @@ export const addBook = async (book) => {
   });
 };
 
+/**
+ * Retorna todos os livros do IndexedDB.
+ *
+ * @returns {Promise<Array>} - A promise resolvida com a lista de todos os autores.
+ * @throws {Error} - Se ocorrer um erro ao buscar os livros
+ */
 export const getAllBooks = async () => {
   const db = await initDB();
   const transaction = db.transaction("books", "readonly");
@@ -147,6 +194,13 @@ export const getAllBooks = async () => {
   });
 };
 
+/**
+ * Deleta um livro do IndexedDB pelo ID.
+ *
+ * @param {number} id - O ID do livro que será deletado.
+ * @returns {Promise<string>} - A promise resolvida com uma mensagem de sucesso.
+ * @throws {Error} - Se ocorrer um erro ao deletar um livro.
+ */
 export const deleteBook = async (id) => {
   const db = await initDB();
   const transaction = db.transaction("books", "readwrite");
@@ -165,6 +219,14 @@ export const deleteBook = async (id) => {
   });
 };
 
+/**
+ * Deleta todos os livros associados a um autor específico,
+ * baseado no ID do autor.
+ *
+ * @param {number} id - O ID do autor que terão os livros deletados.
+ * @returns {Promise<string>} - A promise resolvida com uma mensagem de sucesso.
+ * @throws {Error} - Se ocorrer um erro ao deletar os livros do autor.
+ */
 export const deleteBookByAuthor = async (id) => {
   const db = await initDB();
   const transaction = db.transaction("books", "readwrite");

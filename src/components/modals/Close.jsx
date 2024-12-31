@@ -17,6 +17,13 @@ const StyledModalClose = styled(DialogClose)`
   }
 `;
 
+/**
+ * Componente que renderiza um botão de fechamento para modal
+ * criado com DialogClose do Radix UI.
+ *
+ * @component
+ * @returns {JSX.Element} - Um botão.
+ */
 const ModalClose = () => {
   return <StyledModalClose aria-label="Close">×</StyledModalClose>;
 };
