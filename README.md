@@ -2,6 +2,8 @@
 
 A Online Library é um projeto de um CRUD de autores e livros criados com JavaScript, React e Vite.
 
+A aplicação está rodando no Netlify: https://effulgent-pie-e44333.netlify.app/
+
 ## Sobre o Projeto
 
 A aplicação possui 3 páginas principais: Home, Autores, Livros e vários componentes desenvolvidos para integrar a essas páginas.
