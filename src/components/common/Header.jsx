@@ -89,7 +89,7 @@ const Nav = styled.nav`
  * está ativo com base no caminho atual da URL.
  *
  * @component
- * @returns {JSX.Element} - O cabeçalho.
+ * @returns {JSX.Element} - O cabeçalho com a navegação.
  */
 function Header() {
   const location = useLocation();
