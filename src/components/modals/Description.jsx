@@ -13,6 +13,15 @@ const StyledModalDescription = styled(DialogDescription)`
   margin-bottom: 15px;
 `;
 
+/**
+ * Componente que renderiza a descrição de um modal
+ * criado com DialogDescription do Radix UI.
+ *
+ * @component
+ * @param {Object} props - Propriedades do componente.
+ * @param {React.ReactNode} props.children - O conteúdo da descrição.
+ * @returns {JSX.Element} - A descrição.
+ */
 const ModalDescription = ({ children }) => {
   return <StyledModalDescription>{...children}</StyledModalDescription>;
 };

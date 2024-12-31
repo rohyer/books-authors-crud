@@ -25,6 +25,19 @@ const Content = styled(Dialog.Content)`
   margin: auto;
 `;
 
+/**
+ * Componente que renderiza um modal de leitura de
+ * autores ou livros criado com Radix UI.
+ *
+ * @param {Object} props - As propriedades do componente.
+ * @param {string} props.type - Tipo do item a ser exibido (ex: "autor", "livro").
+ * @param {number} props.id - ID do item.
+ * @param {string} props.name - Nome do item.
+ * @param {string} [props.email] - E-mail caso o tipo seja autor.
+ * @param {number} [props.pages] - Número de páginas do livro caso o tipo seja livro.
+ * @param {string} [props.author] - ID do autor do livro, caso o tipo seja livro.
+ * @returns {JSX.Element} O componente ModalRead
+ */
 const ModalRead = ({ type, ...data }) => {
   return (
     <Dialog.Portal>

@@ -26,6 +26,15 @@ const Content = styled(Dialog.Content)`
   margin: auto;
 `;
 
+/**
+ * Componente que renderiza um modal de criação de
+ * autores ou livros criado com Radix UI.
+ *
+ * @param {Object} props - As propriedades do componente.
+ * @param {string} props.title - O título do modal.
+ * @param {"book" | "author"} props.type - O tipo do modal que define o formulário que será exibido.
+ * @returns {JSX.Element} O componente ModalCreate
+ */
 const ModalCreate = ({ title, type }) => {
   return (
     <Dialog.Portal>
