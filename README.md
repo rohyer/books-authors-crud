@@ -52,7 +52,7 @@ Para inicializar a aplicação em container usando Docker, acesse o diretório r
 
 **Lembre-se de conferir as portas disponíveis para uso na sua máquina.**
 
-**Caso queira utilizar a imagem já criada, acesse no DockerHub: https://hub.docker.com/r/rohyer/online-library**
+**Caso queira utilizar a imagem já criada, acesse no DockerHub: https://hub.docker.com/r/rohyer/online-library e utilize a versão mais atual.**
 
 ## Documentação
 
