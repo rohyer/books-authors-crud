@@ -42,6 +42,16 @@ Para um melhor gerenciamento do estado foi usado React Context API.
 
 3. Rode o projeto com o comando: npm run dev
 
+## Instalação com Docker
+
+Para inicializar a aplicação em container usando Docker, acesse o diretório raíz do projeto e utilize os seguintes comandos:
+
+1. Gerar a imagem: docker build -t online-library-image .
+2. Criar o container: docker run -p 3000:80 --name online-library online-library-image
+
+**Lembre-se de conferir as portas disponíveis para uso na sua máquina**
+**Caso queira utilizar a imagem já criada, acesse no DockerHub: https://hub.docker.com/r/rohyer/online-library**
+
 ## Documentação
 
 A documentação foi feita com JSDoc. Já está no repositório, mas caso sinta a necessidade de gerá-la novamente basta usar o comando: npm run docs.
