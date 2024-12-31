@@ -18,6 +18,9 @@ export const AuthorsBooksProvider = ({ children }) => {
     setAuthors((prevAuthors) =>
       prevAuthors.filter((author) => author.id !== id)
     );
+    setBooks((prevBooks) =>
+      prevBooks.filter((book) => Number(book.author) !== id)
+    );
   };
 
   const addBookToState = (newBook) => {
