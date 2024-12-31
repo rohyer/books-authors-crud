@@ -33,6 +33,7 @@ Para um melhor gerenciamento do estado foi usado React Context API.
 - [ReactRouter](https://reactrouter.com/)
 - [RadixUI](https://www.radix-ui.com/)
 - [JSDoc](https://jsdoc.app/)
+- [Docker](https://www.docker.com/)
 
 ## Instalação
 
