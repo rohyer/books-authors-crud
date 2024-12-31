@@ -51,6 +51,7 @@ Para inicializar a aplicação em container usando Docker, acesse o diretório r
 2. Criar o container: docker run -p 3000:80 --name online-library online-library-image
 
 **Lembre-se de conferir as portas disponíveis para uso na sua máquina.**
+
 **Caso queira utilizar a imagem já criada, acesse no DockerHub: https://hub.docker.com/r/rohyer/online-library**
 
 ## Documentação
