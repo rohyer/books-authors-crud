@@ -41,6 +41,19 @@ const Span = styled.span`
   }
 `;
 
+/**
+ * Componente responsável por renderizar uma tabela de livros.
+ *
+ * Exibe os livros disponíveis no contexto AuthorsBooksContext,
+ * com funcionalidades para visualizar e excluir livros usando os
+ * modais ModalRead e ModalDelete. Cada linha da tabela possui o
+ * id, nome, páginas, ID do autor e ações para o livro.
+ *
+ * @component
+ * @param {Object} props - Propriedades do componente.
+ * @param {function} props.onDelete - Callback para excluir um livro. Recebe o ID do livro como parâmetro.
+ * @returns {JSX.Element} - O componente TableBooks.
+ */
 const Table = ({ onDelete }) => {
   const { books } = useContext(AuthorsBooksContext);
 
