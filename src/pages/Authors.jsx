@@ -4,7 +4,11 @@ import * as Dialog from "@radix-ui/react-dialog";
 import ModalCreate from "../components/modals/ModalCreate";
 import TableAuthor from "../components/authors/TableAuthor";
 import Title from "../components/common/Title";
-import { getAllAuthors, deleteAuthor } from "../services/indexedDB";
+import {
+  getAllAuthors,
+  deleteAuthor,
+  deleteBookByAuthor
+} from "../services/indexedDB";
 import { AuthorsBooksContext } from "../contexts/AuthorsBooksContext";
 
 const StyledAuthor = styled.div`
@@ -56,9 +60,10 @@ const Authors = () => {
 
   const handleDelete = async (id) => {
     try {
-      const result = await deleteAuthor(id);
-      alert(result);
+      const deletedAuthorResult = await deleteAuthor(id);
+      const deletedBookResult = await deleteBookByAuthor(id);
       deleteAuthorFromState(id);
+      alert(deletedAuthorResult + "\n" + deletedBookResult);
     } catch (error) {
       console.error(error);
     }
