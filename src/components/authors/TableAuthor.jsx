@@ -65,7 +65,7 @@ const TableAuthor = ({ onDelete }) => {
             ID
           </TableHeader>
           <TableHeader style={{ width: "40%", minWidth: "250px" }}>
-            Name
+            Nome
           </TableHeader>
           <TableHeader style={{ width: "40%", minWidth: "250px" }}>
             E-mail

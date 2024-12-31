@@ -65,13 +65,13 @@ const TableBooks = ({ onDelete }) => {
             ID
           </TableHeader>
           <TableHeader style={{ width: "40%", minWidth: "250px" }}>
-            Name
+            Nome
           </TableHeader>
           <TableHeader style={{ width: "40%", minWidth: "250px" }}>
-            Pages
+            Páginas
           </TableHeader>
           <TableHeader style={{ width: "8%", minWidth: "100px" }}>
-            ID Author
+            ID Autor
           </TableHeader>
           <TableHeader style={{ width: "5%", minWidth: "80px" }}></TableHeader>
         </tr>
