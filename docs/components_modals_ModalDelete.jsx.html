@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/modals/ModalDelete.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/modals/ModalDelete.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import styled from "styled-components";
+import * as Dialog from "@radix-ui/react-dialog";
+import ModalTitle from "./Title";
+import ModalDescription from "./Description";
+import ModalClose from "./Close";
+
+const Overlay = styled(Dialog.Overlay)`
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  inset: 0;
+`;
+
+const Content = styled(Dialog.Content)`
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  max-height: 175px;
+  padding: 15px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+`;
+
+const DeleteButton = styled.button`
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  color: #ffffff;
+  background-color: #ff0000aa;
+  border: none;
+  transition: all 0.25s;
+
+  &amp;:hover {
+    background-color: #ff0000;
+  }
+`;
+
+const CancelButton = styled(Dialog.Close)`
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  color: #333;
+  background-color: #ddd;
+  border: none;
+  margin-left: 15px;
+  transition: all 0.25s;
+
+  &amp;:hover {
+    background-color: #bbb;
+  }
+`;
+
+/**
+ * Componente que renderiza um modal de remoção de
+ * autores ou livros criado com Radix UI.
+ *
+ * @param {Object} props - As propriedades do componente.
+ * @param {string} props.type - Tipo do item a ser deletado (ex: "autor", "livro").
+ * @param {number} props.id - ID do item a ser deletado.
+ * @param {string} props.name - Nome do item a ser deletado.
+ * @param {function} props.onDelete - Função responsável pela exclusão do item.
+ * @returns {JSX.Element} O componente ModalDelete
+ */
+const ModalDelete = ({ type, id, name, onDelete }) => {
+  return (
+    &lt;Dialog.Portal>
+      &lt;Overlay />
+
+      &lt;Content>
+        &lt;ModalTitle title="Deletar registro" />
+
+        &lt;ModalDescription>
+          Deseja mesmo deletar o {type} {name}?
+        &lt;/ModalDescription>
+
+        &lt;DeleteButton onClick={() => onDelete(id)}>Deletar&lt;/DeleteButton>
+        &lt;CancelButton>Cancelar&lt;/CancelButton>
+
+        &lt;ModalClose />
+      &lt;/Content>
+    &lt;/Dialog.Portal>
+  );
+};
+
+export default ModalDelete;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Authors">Authors</a></li><li><a href="global.html#AuthorsBooksProvider">AuthorsBooksProvider</a></li><li><a href="global.html#Books">Books</a></li><li><a href="global.html#FormAuthor">FormAuthor</a></li><li><a href="global.html#FormBook">FormBook</a></li><li><a href="global.html#FormMessageError">FormMessageError</a></li><li><a href="global.html#FormMessageSuccess">FormMessageSuccess</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#ModalClose">ModalClose</a></li><li><a href="global.html#ModalCreate">ModalCreate</a></li><li><a href="global.html#ModalDelete">ModalDelete</a></li><li><a href="global.html#ModalDescription">ModalDescription</a></li><li><a href="global.html#ModalRead">ModalRead</a></li><li><a href="global.html#ModalTitle">ModalTitle</a></li><li><a href="global.html#SubmitButton">SubmitButton</a></li><li><a href="global.html#TableAuthor">TableAuthor</a></li><li><a href="global.html#TableBooks">TableBooks</a></li><li><a href="global.html#Title">Title</a></li><li><a href="global.html#UpdateTitle">UpdateTitle</a></li><li><a href="global.html#addAuthor">addAuthor</a></li><li><a href="global.html#addBook">addBook</a></li><li><a href="global.html#deleteAuthor">deleteAuthor</a></li><li><a href="global.html#deleteBook">deleteBook</a></li><li><a href="global.html#deleteBookByAuthor">deleteBookByAuthor</a></li><li><a href="global.html#fetchAuthors">fetchAuthors</a></li><li><a href="global.html#fetchBooks">fetchBooks</a></li><li><a href="global.html#getAllAuthors">getAllAuthors</a></li><li><a href="global.html#getAllBooks">getAllBooks</a></li><li><a href="global.html#handleClick">handleClick</a></li><li><a href="global.html#handleDelete">handleDelete</a></li><li><a href="global.html#initDB">initDB</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Tue Dec 31 2024 17:11:58 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/books/TableBook.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/books/TableBook.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import styled from "styled-components";
+import Trash from "../../assets/trash.svg";
+import { FaExternalLinkAlt } from "react-icons/fa";
+import * as Dialog from "@radix-ui/react-dialog";
+import ModalDelete from "../modals/ModalDelete";
+import ModalRead from "../modals/ModalRead";
+import { useContext } from "react";
+import { AuthorsBooksContext } from "../../contexts/AuthorsBooksContext";
+
+const StyledTable = styled.table`
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  margin: 20px auto 0px;
+`;
+
+const TableHeader = styled.th`
+  background-color: #0073d0;
+  color: #fff;
+`;
+
+const TableCell = styled.td`
+  color: #333;
+  padding: 10px;
+  border: 1px solid #ddd;
+`;
+
+const TableRow = styled.tr`
+  &amp;:nth-child(even) {
+    background-color: #e0e0e0;
+  }
+`;
+
+const Span = styled.span`
+  cursor: pointer;
+  color: #646cff;
+
+  &amp;:hover {
+    color: #535bf2;
+    text-decoration: underline;
+  }
+`;
+
+/**
+ * Componente responsável por renderizar uma tabela de livros.
+ *
+ * Exibe os livros disponíveis no contexto AuthorsBooksContext,
+ * com funcionalidades para visualizar e excluir livros usando os
+ * modais ModalRead e ModalDelete. Cada linha da tabela possui o
+ * id, nome, páginas, ID do autor e ações para o livro.
+ *
+ * @component
+ * @param {Object} props - Propriedades do componente.
+ * @param {function} props.onDelete - Callback para excluir um livro. Recebe o ID do livro como parâmetro.
+ * @returns {JSX.Element} - Uma tabela de livros.
+ */
+const TableBooks = ({ onDelete }) => {
+  const { books } = useContext(AuthorsBooksContext);
+
+  return (
+    &lt;StyledTable>
+      &lt;thead>
+        &lt;tr>
+          &lt;TableHeader style={{ width: "8%", minWidth: "100px" }}>
+            ID
+          &lt;/TableHeader>
+          &lt;TableHeader style={{ width: "40%", minWidth: "250px" }}>
+            Name
+          &lt;/TableHeader>
+          &lt;TableHeader style={{ width: "40%", minWidth: "250px" }}>
+            Pages
+          &lt;/TableHeader>
+          &lt;TableHeader style={{ width: "8%", minWidth: "100px" }}>
+            ID Author
+          &lt;/TableHeader>
+          &lt;TableHeader style={{ width: "5%", minWidth: "80px" }}>&lt;/TableHeader>
+        &lt;/tr>
+      &lt;/thead>
+      &lt;tbody>
+        {books &amp;&amp;
+          books.map((book) => (
+            &lt;TableRow key={book.id}>
+              &lt;TableCell>{book.id}&lt;/TableCell>
+              &lt;TableCell>
+                &lt;Dialog.Root>
+                  &lt;Dialog.Trigger asChild style={{ textAlign: "center" }}>
+                    &lt;Span>
+                      &lt;FaExternalLinkAlt style={{ marginRight: "5px" }} />
+                      {book.name}
+                    &lt;/Span>
+                  &lt;/Dialog.Trigger>
+
+                  &lt;ModalRead
+                    type="livro"
+                    id={book.id}
+                    name={book.name}
+                    pages={book.pages}
+                    author={book.author}
+                  />
+                &lt;/Dialog.Root>
+              &lt;/TableCell>
+              &lt;TableCell>{book.pages}&lt;/TableCell>
+              &lt;TableCell>{book.author}&lt;/TableCell>
+
+              &lt;TableCell style={{ textAlign: "center" }}>
+                &lt;Dialog.Root>
+                  &lt;Dialog.Trigger asChild style={{ textAlign: "center" }}>
+                    &lt;img
+                      src={Trash}
+                      alt="Deletar registro"
+                      style={{
+                        cursor: "pointer",
+                        width: "15px",
+                        height: "auto"
+                      }}
+                    />
+                  &lt;/Dialog.Trigger>
+
+                  &lt;ModalDelete
+                    type="livro"
+                    id={book.id}
+                    name={book.name}
+                    onDelete={onDelete}
+                  />
+                &lt;/Dialog.Root>
+              &lt;/TableCell>
+            &lt;/TableRow>
+          ))}
+      &lt;/tbody>
+    &lt;/StyledTable>
+  );
+};
+
+export default TableBooks;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Authors">Authors</a></li><li><a href="global.html#AuthorsBooksProvider">AuthorsBooksProvider</a></li><li><a href="global.html#Books">Books</a></li><li><a href="global.html#FormAuthor">FormAuthor</a></li><li><a href="global.html#FormBook">FormBook</a></li><li><a href="global.html#FormMessageError">FormMessageError</a></li><li><a href="global.html#FormMessageSuccess">FormMessageSuccess</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#ModalClose">ModalClose</a></li><li><a href="global.html#ModalCreate">ModalCreate</a></li><li><a href="global.html#ModalDelete">ModalDelete</a></li><li><a href="global.html#ModalDescription">ModalDescription</a></li><li><a href="global.html#ModalRead">ModalRead</a></li><li><a href="global.html#ModalTitle">ModalTitle</a></li><li><a href="global.html#SubmitButton">SubmitButton</a></li><li><a href="global.html#TableAuthor">TableAuthor</a></li><li><a href="global.html#TableBooks">TableBooks</a></li><li><a href="global.html#Title">Title</a></li><li><a href="global.html#UpdateTitle">UpdateTitle</a></li><li><a href="global.html#addAuthor">addAuthor</a></li><li><a href="global.html#addBook">addBook</a></li><li><a href="global.html#deleteAuthor">deleteAuthor</a></li><li><a href="global.html#deleteBook">deleteBook</a></li><li><a href="global.html#deleteBookByAuthor">deleteBookByAuthor</a></li><li><a href="global.html#fetchAuthors">fetchAuthors</a></li><li><a href="global.html#fetchBooks">fetchBooks</a></li><li><a href="global.html#getAllAuthors">getAllAuthors</a></li><li><a href="global.html#getAllBooks">getAllBooks</a></li><li><a href="global.html#handleClick">handleClick</a></li><li><a href="global.html#handleDelete">handleDelete</a></li><li><a href="global.html#initDB">initDB</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Tue Dec 31 2024 17:11:58 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

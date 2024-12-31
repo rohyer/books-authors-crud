@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: pages/Authors.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: pages/Authors.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useContext, useEffect } from "react";
+import styled from "styled-components";
+import * as Dialog from "@radix-ui/react-dialog";
+import ModalCreate from "../components/modals/ModalCreate";
+import TableAuthor from "../components/authors/TableAuthor";
+import Title from "../components/common/Title";
+import {
+  getAllAuthors,
+  deleteAuthor,
+  deleteBookByAuthor
+} from "../services/indexedDB";
+import { AuthorsBooksContext } from "../contexts/AuthorsBooksContext";
+
+const StyledAuthor = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 1280px;
+  margin: auto;
+`;
+
+const RegisterButton = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 400;
+  font-style: normal;
+  color: #333333;
+  border-color: #0073d0;
+  background-color: #ffffff;
+  transition: all 0.25s;
+
+  &amp;:hover {
+    color: #ffffff;
+    background-color: #0073d0;
+  }
+`;
+
+/**
+ * Componente que representa a página de autores para gerenciá-los.
+ *
+ * Este componente utiliza funções de manipulação do IndexedDB e o contexto AuthorsBooksContext para carregar, exibir e excluir autores.
+ * Ele também permite cadastrar novos autores usando o componente ModalCreate.
+ *
+ * @component
+ * @returns {JSX.Element} O componente Authors.
+ */
+const Authors = () => {
+  const { authors, addAllAuthorsToState, deleteAuthorFromState } =
+    useContext(AuthorsBooksContext);
+
+  /**
+   * Busca todos os autores no IndexedDB e atualiza o estado global.
+   *
+   * @async
+   * @function fetchAuthors
+   */
+  const fetchAuthors = async () => {
+    try {
+      const authorsData = await getAllAuthors();
+
+      addAllAuthorsToState(authorsData);
+    } catch (error) {
+      console.log(`Erro ao buscar autores: ${error}`);
+      addAllAuthorsToState([]);
+    }
+  };
+
+  /**
+   * Exclui um autor e todos os seus livros associados do IndexedDB.
+   *
+   * @async
+   * @function handleDelete
+   * @param {number} id - O ID do autor a ser excluído
+   */
+  const handleDelete = async (id) => {
+    try {
+      const deletedAuthorResult = await deleteAuthor(id);
+      const deletedBookResult = await deleteBookByAuthor(id);
+      deleteAuthorFromState(id);
+      alert(deletedAuthorResult + "\n" + deletedBookResult);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAuthors();
+  }, []);
+
+  return (
+    &lt;StyledAuthor>
+      &lt;Dialog.Root>
+        &lt;Dialog.Trigger asChild style={{ textAlign: "center" }}>
+          &lt;RegisterButton>Cadastrar Autor&lt;/RegisterButton>
+        &lt;/Dialog.Trigger>
+
+        &lt;ModalCreate title="Cadastro de Autor" type="author" />
+      &lt;/Dialog.Root>
+
+      {!Array.isArray(authors) || authors.length === 0 ? (
+        &lt;Title title="Nenhum autor cadastrado!" />
+      ) : (
+        &lt;TableAuthor type="autor" onDelete={handleDelete} />
+      )}
+    &lt;/StyledAuthor>
+  );
+};
+
+export default Authors;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Authors">Authors</a></li><li><a href="global.html#AuthorsBooksProvider">AuthorsBooksProvider</a></li><li><a href="global.html#Books">Books</a></li><li><a href="global.html#FormAuthor">FormAuthor</a></li><li><a href="global.html#FormBook">FormBook</a></li><li><a href="global.html#FormMessageError">FormMessageError</a></li><li><a href="global.html#FormMessageSuccess">FormMessageSuccess</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#ModalClose">ModalClose</a></li><li><a href="global.html#ModalCreate">ModalCreate</a></li><li><a href="global.html#ModalDelete">ModalDelete</a></li><li><a href="global.html#ModalDescription">ModalDescription</a></li><li><a href="global.html#ModalRead">ModalRead</a></li><li><a href="global.html#ModalTitle">ModalTitle</a></li><li><a href="global.html#SubmitButton">SubmitButton</a></li><li><a href="global.html#TableAuthor">TableAuthor</a></li><li><a href="global.html#TableBooks">TableBooks</a></li><li><a href="global.html#Title">Title</a></li><li><a href="global.html#UpdateTitle">UpdateTitle</a></li><li><a href="global.html#addAuthor">addAuthor</a></li><li><a href="global.html#addBook">addBook</a></li><li><a href="global.html#deleteAuthor">deleteAuthor</a></li><li><a href="global.html#deleteBook">deleteBook</a></li><li><a href="global.html#deleteBookByAuthor">deleteBookByAuthor</a></li><li><a href="global.html#fetchAuthors">fetchAuthors</a></li><li><a href="global.html#fetchBooks">fetchBooks</a></li><li><a href="global.html#getAllAuthors">getAllAuthors</a></li><li><a href="global.html#getAllBooks">getAllBooks</a></li><li><a href="global.html#handleClick">handleClick</a></li><li><a href="global.html#handleDelete">handleDelete</a></li><li><a href="global.html#initDB">initDB</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Tue Dec 31 2024 17:11:58 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
