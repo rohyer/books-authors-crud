@@ -57,6 +57,18 @@ const InputError = styled.p`
   margin: 5px 0px 0px;
 `;
 
+/**
+ * Componente responsável por renderizar um formulário para
+ * cadastro de livros.
+ *
+ * Permite inserir nome, selecionar um autor já existente e
+ * inserir o número de páginas do livro.
+ * O formulário utilização validação de campos e exibe mensagens
+ * de sucesso ou erro.
+ *
+ * @component
+ * @returns {JSX.Element} O componente FormBook
+ */
 const FormBook = () => {
   const {
     register,
@@ -69,6 +81,15 @@ const FormBook = () => {
   const [submitSuccess, setSubmitSuccess] = useState("");
   const [submitError, setSubmitError] = useState("");
 
+  /**
+   * Função que é chamada para enviar o formulário.
+   *
+   * @async
+   * @param {Object} data - Dados coletados do formulário.
+   * @param {string} data.name - Nome do livro.
+   * @param {string} data.author - ID do autor selecionado.
+   * @param {number} [data.pages] - Número de páginas do livro (opcional).
+   */
   const onSubmit = async (data) => {
     setSubmitSuccess("");
     setSubmitError("");
@@ -84,6 +105,10 @@ const FormBook = () => {
     }
   };
 
+  /**
+   * Função que reseta as mensagens de sucesso e erro ao clicar
+   * no botão enviar.
+   */
   const handleClick = () => {
     setSubmitSuccess("");
     setSubmitError("");
