@@ -42,6 +42,13 @@ Para um melhor gerenciamento do estado foi usado React Context API.
 
 3. Rode o projeto com o comando: npm run dev
 
+## Documentação
+
+A documentação foi feita com JSDoc. Já está no repositório, mas caso sinta a necessidade de gerá-la novamente basta usar o comando: npm run docs.
+
+Para acessá-la basta navegar até o caminho /docs/.
+Exemplo: caso esteja rodando na porta 5173 localmente, basta ir até http://localhost:5173/docs/
+
 ### React + Vite (orientação padrão do Vite)
 
 Esse template fornece uma configuração mínima para o React executar no Vite com HMR e algumas regras do ESLint.
