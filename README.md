@@ -49,7 +49,7 @@ A documentação foi feita com JSDoc. Já está no repositório, mas caso sinta 
 Para acessá-la basta navegar até o caminho /docs/.
 Exemplo: caso esteja rodando na porta 5173 localmente, basta ir até http://localhost:5173/docs/
 
-### React + Vite (orientação padrão do Vite)
+## React + Vite (orientação padrão do Vite)
 
 Esse template fornece uma configuração mínima para o React executar no Vite com HMR e algumas regras do ESLint.
 
