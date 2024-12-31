@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/authors/FormAuthor.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/authors/FormAuthor.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import styled from "styled-components";
+import { useForm } from "react-hook-form";
+import { addAuthor } from "../../services/indexedDB";
+import { AuthorsBooksContext } from "../../contexts/AuthorsBooksContext";
+import { useContext, useState } from "react";
+import SubmitButton from "../common/SubmitButton";
+import FormMessageSuccess from "../common/FormMessageSuccess";
+import FormMessageError from "../common/FormMessageError";
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Input = styled.input`
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  font-style: normal;
+  color: #333;
+  background-color: #fff;
+  height: 40px;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  padding: 0px 10px;
+  margin-top: 15px;
+  transition: all 0.3s;
+  &amp;:focus {
+    background-color: #ddd;
+  }
+`;
+
+const InputError = styled.p`
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  font-style: normal;
+  color: #ff0000;
+  margin: 5px 0px 0px;
+`;
+
+/**
+ * Componente responsável por renderizar um formulário para
+ * cadastro de autores.
+ *
+ * Permite inserir nome e e-mail do autor.
+ * O formulário utilização validação de campos e exibe mensagens
+ * de sucesso ou erro.
+ *
+ * @component
+ * @returns {JSX.Element} O formulário de cadastro de autor
+ */
+const FormAuthor = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = useForm();
+
+  const { addAuthorToState } = useContext(AuthorsBooksContext);
+  const [submitSuccess, setSubmitSuccess] = useState("");
+  const [submitError, setSubmitError] = useState("");
+
+  /**
+   * Função que é chamada para enviar o formulário.
+   *
+   * @async
+   * @param {Object} data - Dados coletados do formulário.
+   * @param {string} data.name - Nome do autor.
+   * @param {string} data.email - E-mail do autor.
+   */
+  const onSubmit = async (data) => {
+    setSubmitSuccess("");
+    setSubmitError("");
+
+    try {
+      const newAuthor = await addAuthor(data);
+
+      setSubmitSuccess("Autor cadastrado com sucesso!");
+      addAuthorToState(newAuthor);
+      reset();
+    } catch (error) {
+      setSubmitError(error);
+    }
+  };
+
+  /**
+   * Função que reseta as mensagens de sucesso e erro ao clicar
+   * no botão enviar.
+   */
+  const handleClick = () => {
+    setSubmitSuccess("");
+    setSubmitError("");
+  };
+
+  return (
+    &lt;Form onSubmit={handleSubmit(onSubmit)}>
+      &lt;Input
+        {...register("name", { required: "Campo obrigatório" })}
+        placeholder="Nome"
+        type="text"
+      />
+      {errors.name &amp;&amp; &lt;InputError>{errors.name.message}&lt;/InputError>}
+
+      &lt;Input {...register("email")} placeholder="E-mail" type="email" />
+
+      &lt;SubmitButton onClick={handleClick} />
+
+      {submitSuccess &amp;&amp; &lt;FormMessageSuccess title={submitSuccess} />}
+      {submitError &amp;&amp; &lt;FormMessageError title={submitError} />}
+    &lt;/Form>
+  );
+};
+
+export default FormAuthor;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Authors">Authors</a></li><li><a href="global.html#AuthorsBooksProvider">AuthorsBooksProvider</a></li><li><a href="global.html#Books">Books</a></li><li><a href="global.html#FormAuthor">FormAuthor</a></li><li><a href="global.html#FormBook">FormBook</a></li><li><a href="global.html#FormMessageError">FormMessageError</a></li><li><a href="global.html#FormMessageSuccess">FormMessageSuccess</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#ModalClose">ModalClose</a></li><li><a href="global.html#ModalCreate">ModalCreate</a></li><li><a href="global.html#ModalDelete">ModalDelete</a></li><li><a href="global.html#ModalDescription">ModalDescription</a></li><li><a href="global.html#ModalRead">ModalRead</a></li><li><a href="global.html#ModalTitle">ModalTitle</a></li><li><a href="global.html#SubmitButton">SubmitButton</a></li><li><a href="global.html#TableAuthor">TableAuthor</a></li><li><a href="global.html#TableBooks">TableBooks</a></li><li><a href="global.html#Title">Title</a></li><li><a href="global.html#addAuthor">addAuthor</a></li><li><a href="global.html#addBook">addBook</a></li><li><a href="global.html#deleteAuthor">deleteAuthor</a></li><li><a href="global.html#deleteBook">deleteBook</a></li><li><a href="global.html#deleteBookByAuthor">deleteBookByAuthor</a></li><li><a href="global.html#fetchAuthors">fetchAuthors</a></li><li><a href="global.html#fetchBooks">fetchBooks</a></li><li><a href="global.html#getAllAuthors">getAllAuthors</a></li><li><a href="global.html#getAllBooks">getAllBooks</a></li><li><a href="global.html#handleClick">handleClick</a></li><li><a href="global.html#handleDelete">handleDelete</a></li><li><a href="global.html#initDB">initDB</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Tue Dec 31 2024 15:14:45 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

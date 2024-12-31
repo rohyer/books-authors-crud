@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: contexts/AuthorsBooksContext.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: contexts/AuthorsBooksContext.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { createContext, useState } from "react";
+
+export const AuthorsBooksContext = createContext();
+
+/**
+ * Contexto que gerencia o estado dos autores e livros na aplicação.
+ * Possui funções para adicionar e deletar autores e livros.
+ *
+ * @param {Object} props - As propriedades do componente.
+ * @param {React.ReactNode} props.children - Os componentes filhos que terão acesso ao contexto.
+ * @returns {JSX.Element} O provedor do contexto, que envolve os componentes filhos e fornece os valores do contexto
+ *
+ * O contexto inclui os valores e funções a seguir:
+ * - `authors`: Lista de autores cadastrados.
+ * - `books`: Lista de livros cadastrados.
+ * - `addAuthorToState`: Função para adicionar um novo autor ao estado.
+ * - `addAllAuthorsToState`: Função para adicionar todos os autores ao estado.
+ * - `deleteAuthorFromState`: Função para excluir um autor do estado.
+ * - `addBookToState`: Função para adicionar um novo livro ao estado.
+ * - `addAllBooksToState`: Função para adicionar todos os livros ao estado.
+ * - `deleteBookFromState`: Função para excluir um livro do estado.
+ */
+export const AuthorsBooksProvider = ({ children }) => {
+  const [authors, setAuthors] = useState([]);
+  const [books, setBooks] = useState([]);
+
+  const addAuthorToState = (newAuthor) => {
+    setAuthors((prevAuthors) => [...prevAuthors, newAuthor]);
+  };
+
+  const addAllAuthorsToState = (authors) => {
+    setAuthors(authors);
+  };
+
+  const deleteAuthorFromState = (id) => {
+    setAuthors((prevAuthors) =>
+      prevAuthors.filter((author) => author.id !== id)
+    );
+    setBooks((prevBooks) =>
+      prevBooks.filter((book) => Number(book.author) !== id)
+    );
+  };
+
+  const addBookToState = (newBook) => {
+    setBooks((prevBooks) => [...prevBooks, newBook]);
+  };
+
+  const addAllBooksToState = (books) => {
+    setBooks(books);
+  };
+
+  const deleteBookFromState = (id) => {
+    setBooks((prevBooks) => prevBooks.filter((book) => book.id !== id));
+  };
+
+  return (
+    &lt;AuthorsBooksContext.Provider
+      value={{
+        authors,
+        books,
+        addAuthorToState,
+        addAllAuthorsToState,
+        deleteAuthorFromState,
+        addBookToState,
+        addAllBooksToState,
+        deleteBookFromState
+      }}
+    >
+      {children}
+    &lt;/AuthorsBooksContext.Provider>
+  );
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Authors">Authors</a></li><li><a href="global.html#AuthorsBooksProvider">AuthorsBooksProvider</a></li><li><a href="global.html#Books">Books</a></li><li><a href="global.html#FormAuthor">FormAuthor</a></li><li><a href="global.html#FormBook">FormBook</a></li><li><a href="global.html#FormMessageError">FormMessageError</a></li><li><a href="global.html#FormMessageSuccess">FormMessageSuccess</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#ModalClose">ModalClose</a></li><li><a href="global.html#ModalCreate">ModalCreate</a></li><li><a href="global.html#ModalDelete">ModalDelete</a></li><li><a href="global.html#ModalDescription">ModalDescription</a></li><li><a href="global.html#ModalRead">ModalRead</a></li><li><a href="global.html#ModalTitle">ModalTitle</a></li><li><a href="global.html#SubmitButton">SubmitButton</a></li><li><a href="global.html#TableAuthor">TableAuthor</a></li><li><a href="global.html#TableBooks">TableBooks</a></li><li><a href="global.html#Title">Title</a></li><li><a href="global.html#addAuthor">addAuthor</a></li><li><a href="global.html#addBook">addBook</a></li><li><a href="global.html#deleteAuthor">deleteAuthor</a></li><li><a href="global.html#deleteBook">deleteBook</a></li><li><a href="global.html#deleteBookByAuthor">deleteBookByAuthor</a></li><li><a href="global.html#fetchAuthors">fetchAuthors</a></li><li><a href="global.html#fetchBooks">fetchBooks</a></li><li><a href="global.html#getAllAuthors">getAllAuthors</a></li><li><a href="global.html#getAllBooks">getAllBooks</a></li><li><a href="global.html#handleClick">handleClick</a></li><li><a href="global.html#handleDelete">handleDelete</a></li><li><a href="global.html#initDB">initDB</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Tue Dec 31 2024 15:14:45 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

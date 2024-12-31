@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: pages/Home.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: pages/Home.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import styled, { keyframes } from "styled-components";
+import ArrowDown from "../assets/arrow-down.svg";
+import Plus from "../assets/plus.svg";
+import * as Dialog from "@radix-ui/react-dialog";
+import ModalCreate from "../components/modals/ModalCreate";
+import { useState } from "react";
+
+const anime1 = keyframes`
+  to {
+    opacity: initial;
+    transform: initial;
+  }
+`;
+
+const anime2 = keyframes`
+  to {
+    opacity: initial;
+  }
+`;
+
+const animeLoop = keyframes`
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+`;
+
+const StyledHome = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1280px;
+  width: 100%;
+  text-align: center;
+  margin: 0px auto;
+`;
+
+const Title = styled.h1`
+  font-family: "Montserrat", sans-serif;
+  font-size: 36px;
+  font-weight: 500;
+  font-style: normal;
+  text-align: center;
+  color: #333333;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: ${anime1} 0.8s 0.4s forwards;
+
+  @media (max-width: 575px) {
+    font-size: 28px;
+  }
+`;
+
+const Subtitle = styled.h2`
+  font-family: "Montserrat", sans-serif;
+  font-size: 28px;
+  font-weight: 500;
+  font-style: normal;
+  text-align: center;
+  color: #333333;
+  opacity: 0;
+  margin: 0;
+  transform: translateY(30px);
+  animation: ${anime1} 0.8s 0.4s forwards;
+
+  @media (max-width: 575px) {
+    font-size: 22px;
+  }
+`;
+
+const Text = styled.h2`
+  font-family: "Montserrat", sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  font-style: normal;
+  text-align: center;
+  color: #333333;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: ${anime1} 0.8s 1.2s forwards;
+
+  @media (max-width: 575px) {
+    font-size: 18px;
+  }
+`;
+
+const ButtonsSection = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+  button {
+    pointer-events: none;
+    position: absolute;
+    font-family: "Montserrat", sans-serif;
+    color: #333333;
+    background-color: #ffffff;
+    border: 1px solid #444;
+    border-radius: 6px;
+    opacity: 0;
+    transition: all 0.25s;
+
+    &amp;:hover {
+      color: #ffffff;
+      background-color: #0073d0;
+    }
+
+    &amp;.active {
+      pointer-events: all;
+
+      &amp;:nth-child(2) {
+        opacity: 1;
+        transform: translateX(-15px);
+      }
+      &amp;:nth-child(3) {
+        opacity: 1;
+        transform: translateX(15px);
+      }
+    }
+  }
+`;
+
+const ArrowImg = styled.img`
+  width: 20px;
+  height: auto;
+  opacity: 0;
+  animation: ${animeLoop} 2s ease-in-out infinite, ${anime2} 0.8s 1.2s forwards;
+  margin-top: 20px;
+`;
+
+const PlusImg = styled.img`
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.2s;
+  animation: ${anime2} 0.8s 1.2s forwards;
+
+  &amp;.inactive {
+    background-color: #0073d0;
+  }
+
+  &amp;.active {
+    background-color: #db0000;
+    transform: rotate(135deg);
+  }
+`;
+
+/**
+ * Componente que representa a página Home
+ *
+ * Este componente possibilita o cadastro tanto de autores como também de livros através do ModalCreate
+ *
+ * @component
+ * @returns  {JSX.Element} O componente Home
+ */
+const Home = () => {
+  const [buttonState, setButtonState] = useState(false);
+
+  /**
+   * Muda o estado buttonState com base no clique do usuário
+   *
+   * @function handleClick
+   */
+  const handleClick = () => {
+    setButtonState((prevButtonState) => !prevButtonState);
+  };
+
+  return (
+    &lt;StyledHome>
+      &lt;Title>Online Library&lt;/Title>
+      &lt;Subtitle>Seja bem-vindo a sua Biblioteca Personalizada!&lt;/Subtitle>
+      &lt;Text>Cadastre seus livros e autores preferidos!&lt;/Text>
+      &lt;ArrowImg src={ArrowDown} alt="Seta para baixo" />
+
+      &lt;ButtonsSection>
+        &lt;PlusImg
+          onClick={handleClick}
+          src={Plus}
+          alt="Botão de cadastro"
+          className={buttonState ? "active" : "inactive"}
+        />
+
+        &lt;Dialog.Root>
+          &lt;Dialog.Trigger asChild style={{ textAlign: "center" }}>
+            &lt;button
+              onClick={handleClick}
+              style={{ left: "-100px" }}
+              className={buttonState ? "active" : "inactive"}
+            >
+              Livro
+            &lt;/button>
+          &lt;/Dialog.Trigger>
+
+          &lt;ModalCreate title="Cadastro de Livro" type="book" />
+        &lt;/Dialog.Root>
+
+        &lt;Dialog.Root>
+          &lt;Dialog.Trigger asChild style={{ textAlign: "center" }}>
+            &lt;button
+              onClick={handleClick}
+              style={{ right: "-106px" }}
+              className={buttonState ? "active" : "inactive"}
+            >
+              Autor
+            &lt;/button>
+          &lt;/Dialog.Trigger>
+
+          &lt;ModalCreate title="Cadastro de Autor" type="author" />
+        &lt;/Dialog.Root>
+      &lt;/ButtonsSection>
+    &lt;/StyledHome>
+  );
+};
+
+export default Home;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Authors">Authors</a></li><li><a href="global.html#AuthorsBooksProvider">AuthorsBooksProvider</a></li><li><a href="global.html#Books">Books</a></li><li><a href="global.html#FormAuthor">FormAuthor</a></li><li><a href="global.html#FormBook">FormBook</a></li><li><a href="global.html#FormMessageError">FormMessageError</a></li><li><a href="global.html#FormMessageSuccess">FormMessageSuccess</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#ModalClose">ModalClose</a></li><li><a href="global.html#ModalCreate">ModalCreate</a></li><li><a href="global.html#ModalDelete">ModalDelete</a></li><li><a href="global.html#ModalDescription">ModalDescription</a></li><li><a href="global.html#ModalRead">ModalRead</a></li><li><a href="global.html#ModalTitle">ModalTitle</a></li><li><a href="global.html#SubmitButton">SubmitButton</a></li><li><a href="global.html#TableAuthor">TableAuthor</a></li><li><a href="global.html#TableBooks">TableBooks</a></li><li><a href="global.html#Title">Title</a></li><li><a href="global.html#addAuthor">addAuthor</a></li><li><a href="global.html#addBook">addBook</a></li><li><a href="global.html#deleteAuthor">deleteAuthor</a></li><li><a href="global.html#deleteBook">deleteBook</a></li><li><a href="global.html#deleteBookByAuthor">deleteBookByAuthor</a></li><li><a href="global.html#fetchAuthors">fetchAuthors</a></li><li><a href="global.html#fetchBooks">fetchBooks</a></li><li><a href="global.html#getAllAuthors">getAllAuthors</a></li><li><a href="global.html#getAllBooks">getAllBooks</a></li><li><a href="global.html#handleClick">handleClick</a></li><li><a href="global.html#handleDelete">handleDelete</a></li><li><a href="global.html#initDB">initDB</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Tue Dec 31 2024 15:14:45 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
