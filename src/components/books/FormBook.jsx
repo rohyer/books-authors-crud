@@ -3,6 +3,9 @@ import { useForm } from "react-hook-form";
 import { addBook } from "../../services/indexedDB";
 import { AuthorsBooksContext } from "../../contexts/AuthorsBooksContext";
 import { useContext, useState } from "react";
+import SubmitButton from "../common/SubmitButton";
+import FormMessageSuccess from "../common/FormMessageSuccess";
+import FormMessageError from "../common/FormMessageError";
 
 const Form = styled.form`
   display: flex;
@@ -52,40 +55,6 @@ const InputError = styled.p`
   font-style: normal;
   color: #ff0000;
   margin: 5px 0px 0px;
-`;
-
-const MessageSuccess = styled.p`
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  font-style: normal;
-  text-align: center;
-  color: #00aa00;
-  margin: 10px 0px 0px;
-`;
-
-const MessageError = styled.p`
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  font-style: normal;
-  text-align: center;
-  color: #ff0000;
-  margin: 10px 0px 0px;
-`;
-
-const SubmitButton = styled.button`
-  font-family: "Montserrat", sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  font-style: normal;
-  color: #fff;
-  background-color: #0073d0cc;
-  margin-top: 15px;
-  transition: all 0.3s;
-  &:hover {
-    background-color: #0073d0ff;
-  }
 `;
 
 const FormBook = () => {
@@ -147,16 +116,10 @@ const FormBook = () => {
 
       <Input type="number" {...register("pages")} placeholder="Páginas" />
 
-      <SubmitButton
-        onClick={handleClick}
-        type="submit"
-        style={{ padding: "10px 20px", fontSize: "16px" }}
-      >
-        Cadastrar
-      </SubmitButton>
+      <SubmitButton onClick={handleClick} />
 
-      {submitSuccess && <MessageSuccess>{submitSuccess}</MessageSuccess>}
-      {submitError && <MessageError>{submitError}</MessageError>}
+      {submitSuccess && <FormMessageSuccess title={submitSuccess} />}
+      {submitError && <FormMessageError title={submitError} />}
     </Form>
   );
 };
