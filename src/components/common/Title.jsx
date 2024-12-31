@@ -15,7 +15,7 @@ const StyledTitle = styled.h1`
  * @component
  * @param {Object} props - Propriedades do componente.
  * @param {string} props.title - O texto do título.
- * @returns {JSX.Element} - Um Título.
+ * @returns {JSX.Element} - O Título.
  */
 const Title = ({ title }) => {
   return <StyledTitle>{title}</StyledTitle>;
