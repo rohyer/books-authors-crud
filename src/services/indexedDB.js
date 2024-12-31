@@ -164,3 +164,32 @@ export const deleteBook = async (id) => {
     };
   });
 };
+
+export const deleteBookByAuthor = async (id) => {
+  const db = await initDB();
+  const transaction = db.transaction("books", "readwrite");
+  const store = transaction.objectStore("books");
+
+  return new Promise((resolve, reject) => {
+    const request = store.openCursor();
+
+    request.onsuccess = (event) => {
+      const cursor = event.target.result;
+
+      if (cursor) {
+        const book = cursor.value;
+
+        if (Number(book.author) === id) {
+          cursor.delete();
+        }
+        cursor.continue();
+      } else {
+        resolve("Livros pertencentes ao autor deletados com sucesso!");
+      }
+    };
+
+    request.onerror = (event) => {
+      reject(`Erro ao deletar livros com ID ${id}: ${event.target.error}`);
+    };
+  });
+};
