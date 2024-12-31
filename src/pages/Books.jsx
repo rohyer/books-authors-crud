@@ -35,6 +35,15 @@ const RegisterButton = styled.button`
   }
 `;
 
+/**
+ * Componente que representa a página de livros para gerenciá-los
+ *
+ * Este componente utiliza funções de manipulação do IndexedDB e o contexto AuthorsBooksContext para carregar, exibir e excluir livros.
+ * Ele também permite cadastrar novos livros usando o componente ModalCreate.
+ *
+ * @component
+ * @returns {JSX.Element} O componente Books
+ */
 const Books = () => {
   const {
     books,
@@ -43,6 +52,12 @@ const Books = () => {
     addAllAuthorsToState
   } = useContext(AuthorsBooksContext);
 
+  /**
+   * Busca todos os livros no IndexedDB e atualiza o estado global
+   *
+   * @async
+   * @function fetchBooks
+   */
   const fetchBooks = async () => {
     try {
       const booksData = await getAllBooks();
@@ -55,6 +70,13 @@ const Books = () => {
     }
   };
 
+  /**
+   * Exclui um livro do IndexedDB
+   *
+   * @async
+   * @function handleDelete
+   * @param {number} id - O ID do livro a ser excluído
+   */
   const handleDelete = async (id) => {
     try {
       const result = await deleteBook(id);

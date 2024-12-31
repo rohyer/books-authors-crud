@@ -151,9 +151,22 @@ const PlusImg = styled.img`
   }
 `;
 
+/**
+ * Componente que representa a página Home
+ *
+ * Este componente possibilita o cadastro tanto de autores como também de livros através do ModalCreate
+ *
+ * @component
+ * @returns  {JSX.Element} O componente Home
+ */
 const Home = () => {
   const [buttonState, setButtonState] = useState(false);
 
+  /**
+   * Muda o estado buttonState com base no clique do usuário
+   *
+   * @function handleClick
+   */
   const handleClick = () => {
     setButtonState((prevButtonState) => !prevButtonState);
   };
