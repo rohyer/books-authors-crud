@@ -48,7 +48,7 @@ const InputError = styled.p`
  * de sucesso ou erro.
  *
  * @component
- * @returns {JSX.Element} O componente FormAuthor
+ * @returns {JSX.Element} O formulário de cadastro de autor
  */
 const FormAuthor = () => {
   const {

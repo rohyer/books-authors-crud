@@ -52,7 +52,7 @@ const Span = styled.span`
  * @component
  * @param {Object} props - Propriedades do componente.
  * @param {function} props.onDelete - Callback para excluir um livro. Recebe o ID do livro como parâmetro.
- * @returns {JSX.Element} - O componente TableBooks.
+ * @returns {JSX.Element} - Uma tabela de livros.
  */
 const TableBooks = ({ onDelete }) => {
   const { books } = useContext(AuthorsBooksContext);

@@ -52,7 +52,7 @@ const Span = styled.span`
  * @component
  * @param {Object} props - Propriedades do componente.
  * @param {function} props.onDelete - Callback para excluir um autor. Recebe o ID do autor como parâmetro.
- * @returns {JSX.Element} - O componente TableAuthors.
+ * @returns {JSX.Element} - Uma tabela de autores.
  */
 const TableAuthor = ({ onDelete }) => {
   const { authors } = useContext(AuthorsBooksContext);
