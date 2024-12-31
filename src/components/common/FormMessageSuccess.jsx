@@ -10,6 +10,14 @@ const StyledFormMessageSuccess = styled.p`
   margin: 10px 0px 0px;
 `;
 
+/**
+ * Componente de mensagem de sucesso para formulários.
+ *
+ * @component
+ * @param {Object} props - Propriedades do componente.
+ * @param {string} props.title - A mensagem de sucesso.
+ * @returns {JSX.Element} - Um parágrafo com a mensagem de sucesso.
+ */
 const FormMessageSuccess = ({ title }) => {
   return <StyledFormMessageSuccess>{title}</StyledFormMessageSuccess>;
 };

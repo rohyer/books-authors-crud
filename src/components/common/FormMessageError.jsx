@@ -10,6 +10,14 @@ const StyledMessageError = styled.p`
   margin: 10px 0px 0px;
 `;
 
+/**
+ * Componente de mensagem de erro para formulários.
+ *
+ * @component
+ * @param {Object} props - Propriedades do componente.
+ * @param {string} props.title - A mensagem de erro.
+ * @returns {JSX.Element} - Um parágrafo com a mensagem de erro.
+ */
 const FormMessageError = ({ title }) => {
   return <StyledMessageError>{title}</StyledMessageError>;
 };
