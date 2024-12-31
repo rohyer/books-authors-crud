@@ -2,6 +2,9 @@ import styled from "styled-components";
 import * as Dialog from "@radix-ui/react-dialog";
 import FormAuthor from "../authors/FormAuthor";
 import FormBook from "../books/FormBook";
+import ModalTitle from "./Title";
+import ModalDescription from "./Description";
+import ModalClose from "./Close";
 
 const Overlay = styled(Dialog.Overlay)`
   background-color: rgba(0, 0, 0, 0.5);
@@ -23,39 +26,6 @@ const Content = styled(Dialog.Content)`
   margin: auto;
 `;
 
-const Title = styled(Dialog.Title)`
-  font-family: "Montserrat", sans-serif;
-  font-size: 20px;
-  font-weight: 600;
-  font-style: normal;
-  color: #444;
-  margin-bottom: 10px;
-`;
-
-const Description = styled(Dialog.Description)`
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  font-style: normal;
-  color: #333;
-  margin-bottom: 15px;
-`;
-
-const CloseButton = styled(Dialog.Close)`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-  font-size: 20px;
-  color: #e62828;
-  background-color: #ddd;
-  transition: all 0.3s;
-  &:hover {
-    background-color: #ccc;
-    border-color: #e62828;
-  }
-`;
-
 const ModalCreate = ({ title, type }) => {
   return (
     <Dialog.Portal>
@@ -66,24 +36,24 @@ const ModalCreate = ({ title, type }) => {
           type === "book" ? { maxHeight: "425px" } : { maxHeight: "350px" }
         }
       >
-        <Title>{title}</Title>
+        <ModalTitle title={title} />
         {type === "book" && (
           <>
-            <Description>
+            <ModalDescription>
               Cadastre livros através do formulário abaixo
-            </Description>
+            </ModalDescription>
             <FormBook />
           </>
         )}
         {type === "author" && (
           <>
-            <Description>
+            <ModalDescription>
               Cadastre autores através do formulário abaixo
-            </Description>
+            </ModalDescription>
             <FormAuthor />
           </>
         )}
-        <CloseButton aria-label="Close">×</CloseButton>
+        <ModalClose />
       </Content>
     </Dialog.Portal>
   );

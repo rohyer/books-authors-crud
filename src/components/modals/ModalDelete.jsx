@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import * as Dialog from "@radix-ui/react-dialog";
+import ModalTitle from "./Title";
+import ModalDescription from "./Description";
+import ModalClose from "./Close";
 
 const Overlay = styled(Dialog.Overlay)`
   background-color: rgba(0, 0, 0, 0.5);
@@ -20,39 +23,6 @@ const Content = styled(Dialog.Content)`
   left: 0;
   right: 0;
   margin: auto;
-`;
-
-const Title = styled(Dialog.Title)`
-  font-family: "Montserrat", sans-serif;
-  font-size: 20px;
-  font-weight: 600;
-  font-style: normal;
-  color: #444;
-  margin-bottom: 10px;
-`;
-
-const Description = styled(Dialog.Description)`
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  font-style: normal;
-  color: #333;
-  margin-bottom: 15px;
-`;
-
-const CloseButton = styled(Dialog.Close)`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-  font-size: 20px;
-  color: #e62828;
-  background-color: #ddd;
-  transition: all 0.3s;
-  &:hover {
-    background-color: #ccc;
-    border-color: #e62828;
-  }
 `;
 
 const DeleteButton = styled.button`
@@ -92,16 +62,16 @@ const ModalDelete = ({ type, id, name, onDelete }) => {
       <Overlay />
 
       <Content>
-        <Title>Deletar registro</Title>
+        <ModalTitle title="Deletar registro" />
 
-        <Description>
+        <ModalDescription>
           Deseja mesmo deletar o {type} {name}?
-        </Description>
+        </ModalDescription>
 
         <DeleteButton onClick={() => onDelete(id)}>Deletar</DeleteButton>
         <CancelButton>Cancelar</CancelButton>
 
-        <CloseButton aria-label="Close">×</CloseButton>
+        <ModalClose />
       </Content>
     </Dialog.Portal>
   );
