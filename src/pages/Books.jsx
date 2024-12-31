@@ -32,10 +32,6 @@ const RegisterButton = styled.button`
   &:hover {
     color: #ffffff;
     background-color: #0073d0;
-
-    svg {
-      color: #fff;
-    }
   }
 `;
 
