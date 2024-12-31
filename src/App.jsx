@@ -3,6 +3,7 @@ import Header from "./components/common/Header";
 import Books from "./pages/Books";
 import Authors from "./pages/Authors";
 import Home from "./pages/Home";
+import UpdateTitle from "./components/common/UpdateTitle";
 
 function App() {
   return (
@@ -10,9 +11,33 @@ function App() {
       <Header />
 
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="livros" element={<Books />} />
-        <Route path="autores" element={<Authors />} />
+        <Route
+          path="/"
+          element={
+            <>
+              <UpdateTitle title="Online Library" />
+              <Home />
+            </>
+          }
+        />
+        <Route
+          path="livros"
+          element={
+            <>
+              <UpdateTitle title="Livros" />
+              <Books />
+            </>
+          }
+        />
+        <Route
+          path="autores"
+          element={
+            <>
+              <UpdateTitle title="Autores" />
+              <Authors />
+            </>
+          }
+        />
       </Routes>
     </Router>
   );
